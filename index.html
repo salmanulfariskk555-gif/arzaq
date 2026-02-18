@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,596 +8,393 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-       /* ===================== Base Styles ===================== */
-body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-}
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        .gradient-blue { background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); }
+        .card-hover:hover { transform: translateY(-10px); transition: all 0.3s ease; }
 
-/* Gradient Helper */
-.gradient-blue {
-    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
-}
+        /* Modal Animation */
+        .animate-slideUp { animation: slideUp 0.4s ease-out; }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
 
-/* ===================== Tabs ===================== */
-.tab-link {
-    padding: 12px 30px;
-    border-radius: 16px;
-    border: 2px solid #e2e8f0;
-    font-weight: 900;
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    transition: all 0.3s ease;
-    background-color: white;
-    color: #94a3b8;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.tab-link.active {
+        /* Hide scrollbar for clean UI */
+        #detailModal > div { max-height: 90vh; overflow-y: auto; }
+        .service-tab.active {
+    background-color: #f97316; /* Orange color */
     border-color: #f97316;
-    background-color: #f97316;
     color: white;
-    box-shadow: 0 10px 20px -5px rgba(249, 115, 22, 0.3);
+    box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3);
 }
 
-.tab-content {
-    display: none;
-    animation: slideUp 0.5s ease forwards;
+.service-card {
+    transition: all 0.3s ease;
 }
 
-.tab-content.active {
-    display: block;
+.service-card:hover {
+    transform: translateY(-5px);
+    border-color: #f97316;
 }
-
-/* ===================== Scroll Containers ===================== */
-.scroll-container {
-    display: flex;
-    gap: 24px;
-    overflow-x: auto;
-    padding-bottom: 20px;
-    -ms-overflow-style: none; /* IE/Edge */
-    scrollbar-width: none; /* Firefox */
-}
-
-.scroll-container::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
-}
-
-/* Custom Scrollbar if needed */
-.scroll-container.custom-scroll::-webkit-scrollbar {
-    height: 6px;
-}
-
-.scroll-container.custom-scroll::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-.scroll-container.custom-scroll::-webkit-scrollbar-thumb {
+        .service-btn.active {
     background: #f97316;
-    border-radius: 10px;
-}
-
-/* ===================== University Cards ===================== */
-.uni-card {
-    min-width: 280px;
-    background: white;
-    border-radius: 40px;
-    border: 1px solid #f1f5f9;
-    overflow: hidden;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
-}
-
-.uni-card:hover {
-    transform: translateY(-10px);
-}
-
-.uni-card img {
-    height: 180px;
-    width: 100%;
-    object-fit: cover;
-}
-
-/* ===================== Placement / Student Cards ===================== */
-.placement-card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.student-card {
-    position: relative;
-    border-radius: 48px;
-    overflow: hidden;
-    height: 400px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
-
-.student-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.student-card:hover img {
-    transform: scale(1.1);
-}
-
-.student-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, #1e3a8a, transparent);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 30px;
-}
-
-.student-overlay h5 {
+    border-color: #f97316;
     color: white;
-    font-size: 20px;
-    font-weight: 900;
-    margin: 0;
+    box-shadow: 0 10px 15px rgba(249, 115, 22, 0.3);
 }
 
-.student-overlay p {
-    color: #fb923c;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-top: 5px;
+.item-card {
+    transition: all 0.3s ease;
+    border: 1px solid #eee;
 }
 
-/* ===================== Animations ===================== */
-@keyframes slideUp {
+.item-card:hover {
+    transform: translateY(-8px);
+    border-color: #f97316;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.animate-fadeUp {
+    animation: fadeUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
+        .service-btn.active { background: #f97316; border-color: #f97316; color: white; }
+.animate-fade { animation: fadeIn 0.4s ease-in; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.course-list-item:hover { background-color: #f8fafc; }
+        .service-btn.active {
+    background: #f97316;
+    border-color: #f97316;
+    color: white;
+    box-shadow: 0 10px 20px rgba(249, 115, 22, 0.4);
+}
 
-</style>
+.detail-card {
+    transition: all 0.3s ease;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+}
 
-<header class="relative w-full z-[100]">
-    <div class="bg-[#0f172a] text-white/70 py-2 px-6 hidden md:block border-b border-white/5">
-        <div class="container mx-auto flex justify-between items-center text-[11px] font-bold tracking-[0.15em] uppercase">
-            <div class="flex space-x-10">
-                <a href="tel:+919495209080" class="hover:text-orange-400 transition-all flex items-center">
-                    <span class="text-orange-500 mr-2 text-sm">●</span> Call: +91 9495 209 080
-                </a>
-                <a href="mailto:careerdrive@gmail.com" class="hover:text-orange-400 transition-all flex items-center">
-                    <span class="text-orange-500 mr-2 text-sm">●</span> Mail: careerdrive@gmail.com
-                </a>
+.detail-card:hover {
+    transform: translateY(-5px);
+    border-color: #f97316;
+    background: white;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.animate-fade {
+    animation: fadeIn 0.4s ease-in forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+    </style>
+<nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <div class="h-12 w-12 bg-[#f97316] rounded-xl flex items-center justify-center text-white text-2xl font-bold shadow-lg">CD</div>
+            <div>
+                <h1 class="text-xl font-extrabold text-[#1e3a8a] leading-none">CAREER DRIVE</h1>
+                <p class="text-[10px] tracking-[0.2em] font-bold text-orange-500 uppercase">Edu Consultancy</p>
             </div>
-            <div class="flex items-center space-x-4 text-[10px] opacity-50">Headquarters: Kondotty, Kerala</div>
+        </div>
+
+        <div class="hidden lg:flex space-x-8 font-semibold text-[#1e3a8a]">
+            <a href="#home" class="hover:text-orange-500 transition">Home</a>
+            <a href="#about" class="hover:text-orange-500 transition">About</a>
+            <a href="#courses" class="hover:text-orange-500 transition">Services</a> <a href="scholarship.html" class="text-orange-600 font-bold hover:scale-105 transition">Scholarship</a> <a href="#process" class="hover:text-orange-500 transition">Process</a>
+            <a href="#contact" class="hover:text-orange-500 transition">Contact</a>
+        </div>
+
+        <div class="flex items-center space-x-4">
+            <a href="https://wa.me/919495209080" class="hidden sm:flex bg-[#25D366] text-white px-6 py-2.5 rounded-full font-bold items-center shadow-lg hover:scale-105 transition">
+                <i class="fab fa-whatsapp mr-2 text-xl"></i> Chat Now
+            </a>
+            <button id="menu-btn" class="lg:hidden text-[#1e3a8a] focus:outline-none">
+                <i class="fas fa-bars text-2xl" id="menu-icon"></i>
+            </button>
         </div>
     </div>
 
-    <nav class="sticky top-0 bg-white/80 backdrop-blur-2xl border-b border-gray-200/50">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-4 group cursor-pointer">
-                <div class="relative">
-                    <div class="h-12 w-12 bg-[#1e3a8a] rounded-xl flex items-center justify-center text-white text-xl font-black shadow-lg">CD</div>
-                    <div class="absolute -top-1 -right-1 w-3 h-3 bg-orange-500 rounded-full border-2 border-white"></div>
-                </div>
-                <div>
-                    <h1 class="text-xl font-[1000] text-[#0f172a] leading-none tracking-tighter">CAREER DRIVE</h1>
-                    <p class="text-[8px] tracking-[0.3em] font-black text-orange-500 uppercase mt-1">International Education</p>
-                </div>
-            </div>
-
-            <div class="hidden lg:flex items-center space-x-10 font-bold text-[#0f172a] text-[11px] uppercase tracking-widest">
-                <a href="#home" class="hover:text-orange-500 transition-all">Home</a>
-                <a href="#about" class="hover:text-orange-500 transition-all">Excellence</a>
-                <a href="#services" class="hover:text-orange-500 transition-all">Programs</a>
-                <a href="#contact" class="hover:text-orange-500 transition-all">Contact</a>
-            </div>
-
-            <div class="flex items-center space-x-5">
-                <a href="https://wa.me/919495209080" class="hidden sm:inline-block bg-[#0f172a] text-white px-6 py-3 rounded-full font-black text-[10px] tracking-widest uppercase hover:bg-orange-500 transition-all">Connect</a>
-
-                <button id="mobile-menu-btn" class="lg:hidden text-[#0f172a] text-2xl p-2 focus:outline-none">
-                    <i id="menu-icon" class="fas fa-bars-staggered transition-transform duration-300"></i>
-                </button>
-            </div>
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-xl animate-fadeIn">
+        <div class="flex flex-col p-6 space-y-4 font-semibold text-[#1e3a8a]">
+            <a href="#home" onclick="toggleMenu()" class="hover:text-orange-500 py-2 border-b border-gray-50">Home</a>
+            <a href="#about" onclick="toggleMenu()" class="hover:text-orange-500 py-2 border-b border-gray-50">About</a>
+            <a href="#courses" onclick="toggleMenu()" class="hover:text-orange-500 py-2 border-b border-gray-50">Services</a>
+            <a href="scholarship.html" class="text-orange-600 py-2 border-b border-gray-50 flex justify-between items-center font-bold">
+                Scholarships <span class="bg-orange-100 text-[10px] px-2 py-1 rounded italic uppercase">New Page</span>
+            </a>
+            <a href="#process" onclick="toggleMenu()" class="hover:text-orange-500 py-2 border-b border-gray-50">Process</a>
+            <a href="#contact" onclick="toggleMenu()" class="hover:text-orange-500 py-2 border-b border-gray-50">Contact</a>
+            <a href="https://wa.me/919495209080" class="bg-[#25D366] text-white px-6 py-3 rounded-xl font-bold flex items-center justify-center shadow-lg shadow-green-200">
+                <i class="fab fa-whatsapp mr-2 text-xl"></i> Chat on WhatsApp
+            </a>
         </div>
+    </div>
+</nav>
+   <section id="home" class="relative min-h-[90vh] flex items-center bg-[#1e3a8a] text-white overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+        <img src="https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&q=80&w=1500" class="w-full h-full object-cover" alt="Campus Background">
+    </div>
 
-        <div id="mobile-nav-container" class="hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-2xl lg:hidden z-[110]">
-            <div class="flex flex-col p-8 space-y-6 font-bold text-[#0f172a] text-[12px] uppercase tracking-[0.2em]">
-                <a href="#home" class="mobile-link border-b border-gray-50 pb-2">Home</a>
-                <a href="#about" class="mobile-link border-b border-gray-50 pb-2">Excellence</a>
-                <a href="#services" class="mobile-link border-b border-gray-50 pb-2">Programs</a>
-                <a href="#contact" class="mobile-link pb-2">Contact</a>
-                <a href="https://wa.me/919495209080" class="bg-[#1e3a8a] text-white text-center py-4 rounded-xl shadow-lg mt-4">Connect on WhatsApp</a>
-            </div>
-        </div>
-    </nav>
-</header>
-<section id="home" class="relative min-h-[95vh] flex items-center bg-white overflow-hidden">
-    <div class="absolute inset-0 z-0 opacity-[0.03]" style="background-image: radial-gradient(#1e3a8a 1px, transparent 1px); background-size: 40px 40px;"></div>
+    <div class="absolute top-20 right-10 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-10 left-10 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl"></div>
 
-    <div class="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-orange-100/50 blur-[150px] rounded-full animate-pulse"></div>
-    <div class="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-blue-100/50 blur-[120px] rounded-full"></div>
-
-    <div class="container mx-auto px-8 relative z-10 grid lg:grid-cols-2 gap-20 items-center">
-        <div class="max-w-3xl">
-            <div class="inline-flex items-center space-x-3 bg-slate-100 px-5 py-2 rounded-full mb-8">
-                <span class="flex h-2 w-2 rounded-full bg-orange-500 animate-ping"></span>
-                <span class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Official Admission Partner 2024</span>
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+        <div class="animate-fadeInLeft">
+            <div class="inline-flex items-center space-x-2 bg-orange-500/10 border border-orange-500/20 text-orange-400 px-4 py-2 rounded-full mb-6">
+                <span class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
+                </span>
+                <span class="text-xs font-black tracking-widest uppercase">Direct Admission 2026-27 Open</span>
             </div>
 
-            <h2 class="text-7xl lg:text-[105px] font-[1000] text-[#0f172a] leading-[0.9] tracking-[-0.04em] mb-10">
-                Defining <br> <span class="text-orange-500">Global</span> <br> Education.
+            <h2 class="text-5xl lg:text-7xl font-extrabold mb-6 leading-[1.1]">
+                Expert Admission <br>
+                <span class="text-orange-500">Guidance</span> for Your <br>
+                Dream Career.
             </h2>
 
-            <p class="text-xl text-slate-500 mb-12 max-w-lg leading-relaxed font-medium">
-                Premier consultancy under the visionary leadership of <strong>Abdul Azeez Alungal</strong>. Precision in guidance, excellence in placement.
+            <p class="text-lg text-blue-100 mb-8 max-w-lg leading-relaxed border-l-4 border-orange-500 pl-6 italic">
+                "Personalized mentorship from <span class="text-white font-bold">Abdul Azeez Alungal</span> to help you secure seats in top-tier accredited universities across the globe."
             </p>
 
-            <div class="flex flex-wrap gap-6">
-                <a href="#contact" class="bg-[#1e3a8a] text-white px-12 py-6 rounded-2xl font-black text-[12px] uppercase tracking-widest shadow-[0_20px_40px_-10px_rgba(30,58,138,0.4)] hover:bg-orange-500 transition-all duration-500">
-                    Apply For 2024
+            <div class="flex flex-wrap gap-4 mb-10">
+                <a href="#contact" class="bg-orange-500 hover:bg-orange-600 px-8 py-4 rounded-2xl font-black text-lg shadow-xl shadow-orange-500/30 transition-all transform hover:-translate-y-1 flex items-center">
+                    Get Free Counseling <i class="fas fa-arrow-right ml-2 text-sm"></i>
                 </a>
-                <a href="#services" class="group flex items-center space-x-4 text-[#0f172a] font-black text-[12px] uppercase tracking-widest px-8 py-6">
-                    <span class="w-12 h-[1px] bg-orange-500 group-hover:w-16 transition-all"></span>
-                    <span>View Programs</span>
+                <a href="#courses" class="bg-white/10 backdrop-blur-md border border-white/20 px-8 py-4 rounded-2xl font-black text-lg hover:bg-white/20 transition-all">
+                    Explore Streams
                 </a>
+            </div>
+
+            <div class="flex items-center space-x-8 pt-6 border-t border-white/10">
+                <div>
+                    <p class="text-2xl font-bold">7+</p>
+                    <p class="text-[10px] text-blue-300 uppercase tracking-widest font-bold">Partnered Unis</p>
+                </div>
+                <div class="w-px h-8 bg-white/10"></div>
+                <div>
+                    <p class="text-2xl font-bold">100%</p>
+                    <p class="text-[10px] text-blue-300 uppercase tracking-widest font-bold">Admission Support</p>
+                </div>
+                <div class="w-px h-8 bg-white/10"></div>
+                <div>
+                    <p class="text-2xl font-bold">Expert</p>
+                    <p class="text-[10px] text-blue-300 uppercase tracking-widest font-bold">Mentorship</p>
+                </div>
             </div>
         </div>
 
-        <div class="relative hidden lg:block">
-            <div class="relative rounded-[4rem] overflow-hidden border-[15px] border-white shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] group">
-                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1200"
-                     class="w-full h-[650px] object-cover transition-transform duration-1000 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-[#0f172a]/40 to-transparent"></div>
-            </div>
+        <div class="hidden lg:block relative animate-fadeInRight">
+            <div class="bg-gradient-to-tr from-orange-500 to-yellow-400 w-full aspect-square rounded-[60px] rotate-6 absolute -z-10 opacity-20"></div>
 
-            <div class="absolute top-20 -left-16 bg-white p-8 rounded-[2.5rem] shadow-2xl animate-float border border-slate-100">
-                <p class="text-5xl font-black text-[#1e3a8a] leading-none mb-1">50+</p>
-                <p class="text-[10px] font-black text-orange-500 uppercase tracking-widest">Global University Tie-ups</p>
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800"
+                     class="rounded-[60px] shadow-2xl shadow-black/50 -rotate-3 hover:rotate-0 transition duration-500 object-cover aspect-[4/5]" alt="Students Discussion">
+
+                <div class="absolute -bottom-6 -left-10 bg-white p-6 rounded-[30px] shadow-2xl flex items-center space-x-4 animate-bounce-slow">
+                    <div class="bg-orange-100 w-12 h-12 rounded-2xl flex items-center justify-center">
+                        <i class="fas fa-user-check text-orange-600 text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-[#1e3a8a] font-black text-sm leading-none">Expert Support</p>
+                        <p class="text-gray-400 text-[10px] font-bold mt-1">ABDUL AZEEZ ALUNGAL</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
-
-<div class="bg-white pb-24 relative z-20">
-    <div class="container mx-auto px-8">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-12 border-t border-slate-100 pt-16">
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-4xl font-black text-[#0f172a]">500<span class="text-orange-500">+</span></h4>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Global Alumni</p>
+    <div class="container mx-auto px-6 -mt-16 relative z-20">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-white p-6 rounded-2xl shadow-xl text-center border-b-4 border-orange-500">
+                <p class="text-3xl font-extrabold text-[#1e3a8a]">4000+</p>
+                <p class="text-gray-500 text-sm font-semibold uppercase">Students Placed</p>
             </div>
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-4xl font-black text-[#0f172a]">100<span class="text-orange-500">%</span></h4>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Placement Support</p>
+            <div class="bg-white p-6 rounded-2xl shadow-xl text-center border-b-4 border-blue-600">
+                <p class="text-3xl font-extrabold text-[#1e3a8a]">20+</p>
+                <p class="text-gray-500 text-sm font-semibold uppercase">Universities</p>
             </div>
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-4xl font-black text-[#0f172a]">15<span class="text-orange-500">+</span></h4>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Years of Trust</p>
+            <div class="bg-white p-6 rounded-2xl shadow-xl text-center border-b-4 border-orange-500">
+                <p class="text-3xl font-extrabold text-[#1e3a8a]">100%</p>
+                <p class="text-gray-500 text-sm font-semibold uppercase">Admission Help</p>
             </div>
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-4xl font-black text-[#0f172a]">Top</h4>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Expert Mentors</p>
+            <div class="bg-white p-6 rounded-2xl shadow-xl text-center border-b-4 border-blue-600">
+                <p class="text-3xl font-extrabold text-[#1e3a8a]">Expert</p>
+                <p class="text-gray-500 text-sm font-semibold uppercase">Counseling</p>
             </div>
         </div>
     </div>
-</div>
 
-<style>
-/* Custom Global Style for International Look */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap');
+    <section id="about" class="py-24">
+        <div class="container mx-auto px-6 flex flex-col lg:flex-row gap-16 items-center">
+            <div class="lg:w-1/2">
+                <img src="https://i.postimg.cc/Bnhz9WpM/Whats-App-Image-2026-02-16-at-11-47-25-AM-(1).jpg" class="rounded-3xl shadow-2xl">
+            </div>
+            <div class="lg:w-1/2">
+                <h3 class="text-orange-500 font-bold uppercase tracking-widest mb-2">Director's Message</h3>
+                <h2 class="text-4xl font-extrabold text-[#1e3a8a] mb-6">Mentorship Under <br>Abdul Azeez Alungal</h2>
+                <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                    With a deep-rooted commitment to student success, our director has spent years building a network that ensures Every student finds the right seat in the right college.
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-orange-100 p-2 rounded-lg"><i class="fas fa-check text-orange-600"></i></div>
+                        <div>
+                            <h4 class="font-bold text-[#1e3a8a]">Transparent Process</h4>
+                            <p class="text-sm text-gray-500">No hidden fees, just direct admission support.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-blue-100 p-2 rounded-lg"><i class="fas fa-check text-blue-600"></i></div>
+                        <div>
+                            <h4 class="font-bold text-[#1e3a8a]">Post-Admission Support</h4>
+                            <p class="text-sm text-gray-500">We assist you even after you join the college.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-body { font-family: 'Plus Jakarta Sans', sans-serif; }
+<section id="services" class="py-24 bg-[#1e3a8a] text-white">
+    <div class="container mx-auto px-6 text-center mb-12">
+        <h2 class="text-4xl font-extrabold mb-4">Our Expertise & Services</h2>
+        <p class="text-blue-200">University Selection to Global Placements</p>
+    </div>
 
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-}
-.animate-float { animation: float 6s infinite ease-in-out; }
+    <div class="container mx-auto px-6 mb-12">
+        <div class="flex flex-wrap justify-center gap-4">
+            <button onclick="showService('uni', this)" class="service-btn active px-8 py-3 rounded-xl font-bold border border-white/20 transition-all bg-white text-blue-900 shadow-lg">
+                <i class="fas fa-university mr-2"></i> UNIVERSITIES
+            </button>
+            <button onclick="showService('courses', this)" class="service-btn px-8 py-3 rounded-xl font-bold border border-white/20 transition-all">
+                <i class="fas fa-graduation-cap mr-2"></i> ACADEMIC COURSES
+            </button>
+            <button onclick="showService('place', this)" class="service-btn px-8 py-3 rounded-xl font-bold border border-white/20 transition-all">
+                <i class="fas fa-building mr-2"></i> PLACEMENTS
+            </button>
+            <button onclick="showService('support', this)" class="service-btn px-8 py-3 rounded-xl font-bold border border-white/20 transition-all">
+                <i class="fas fa-shield-alt mr-2"></i> ADMISSION SUPPORT
+            </button>
+        </div>
+    </div>
 
-/* Selection color */
-::selection { background: #f97316; color: white; }
-</style>
-    <section id="about" class="py-24 bg-white">
     <div class="container mx-auto px-6">
-        <div class="flex flex-col lg:flex-row gap-16 lg:gap-24">
-
-            <div class="lg:w-5/12 w-full">
-                <div class="relative">
-                    <div class="rounded-3xl overflow-hidden shadow-2xl border-b-[12px] border-orange-500">
-                        <img src="https://i.postimg.cc/k4zw86mN/Whats-App-Image-2026-02-13-at-11-47-28-AM.jpg"
-                             alt="Abdul Azeez Alungal"
-                             class="w-full h-auto object-cover">
-                    </div>
-
-                    <div class="mt-8">
-                        <h4 class="text-4xl lg:text-5xl font-[1000] text-[#1e3a8a] tracking-tighter italic leading-none">
-                            Abdul Azeez <span class="text-orange-500 font-black">Alungal</span>
-                        </h4>
-                        <div class="flex items-center gap-3 mt-3">
-                            <span class="h-[2px] w-12 bg-orange-500"></span>
-                            <p class="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em]">Founder & Managing Director</p>
-                        </div>
-                    </div>
-
-                    <div class="absolute -top-6 -right-6 bg-[#1e3a8a] text-white p-6 rounded-2xl shadow-xl">
-                        <p class="text-3xl font-black">20+</p>
-                        <p class="text-[9px] font-bold uppercase tracking-widest opacity-80">Years of <br>Excellence</p>
-                    </div>
-                </div>
+        <div id="service-display" class="bg-white rounded-[40px] p-8 md:p-12 text-slate-900 shadow-2xl min-h-[550px]">
             </div>
-
-            <div class="lg:w-7/12 flex flex-col justify-center">
-                <div class="mb-10">
-                    <h3 class="text-orange-500 font-black uppercase tracking-[0.4em] text-xs mb-3">Director's Message</h3>
-                    <h2 class="text-5xl lg:text-7xl font-[1000] text-[#1e3a8a] leading-[0.9] tracking-tighter">
-                        Integrity in <br> <span class="text-slate-200">Education.</span>
-                    </h2>
-                </div>
-
-                <div class="space-y-8">
-                    <div class="relative">
-                        <p class="text-2xl text-slate-700 font-bold leading-relaxed italic border-l-8 border-orange-500 pl-8">
-                            "Our mission is to provide an ethical and transparent bridge for students to achieve their global academic dreams. At Career Drive, we stand for honesty, merit, and a commitment to excellence."
-                        </p>
-                    </div>
-
-                    <div class="text-lg text-slate-500 font-medium leading-relaxed">
-                        <p class="mb-6">
-                            For over two decades, I have been dedicated to guiding students in the fields of <b>Medicine, Engineering, and Management</b>. We ensure a <b>direct, no-donation admission</b> process, providing personalized mentorship until every student successfully reaches their destination.
-                        </p>
-                    </div>
-
-                    <div class="pt-10 border-t border-slate-100 mt-6">
-                        <p class="text-slate-300 text-[10px] font-black uppercase tracking-[0.4em] mb-4 text-center lg:text-left">With Sincere Regards,</p>
-                        <div class="flex flex-col sm:flex-row items-center justify-between gap-6 bg-slate-50 p-8 rounded-[2rem] border border-slate-100 shadow-sm">
-                            <div>
-                                <h5 class="text-3xl font-[1000] text-[#1e3a8a] tracking-tighter italic">Abdul Azeez Alungal</h5>
-                                <p class="text-orange-500 text-[10px] font-black uppercase tracking-widest mt-1">
-                                </section>
-<section id="services" class="py-24 bg-slate-50 overflow-hidden">
-    <div class="container mx-auto px-6 text-center mb-16">
-        <h3 class="text-orange-500 font-black uppercase tracking-[0.3em] text-xs mb-3">Your Digital Campus</h3>
-        <h2 class="text-5xl font-[1000] text-[#1e3a8a] mb-4">ONLINE DEGREE PROGRAMS</h2>
-        <div class="w-24 h-2 bg-orange-500 mx-auto rounded-full"></div>
-    </div>
-
-    <div class="container mx-auto px-6 mb-12 flex flex-wrap justify-center gap-4">
-        <button onclick="openTab(event, 'uni')" class="tab-link active">
-            <i class="fas fa-university mr-2"></i> UNIVERSITIES
-        </button>
-        <button onclick="openTab(event, 'course-list')" class="tab-link">
-            <i class="fas fa-graduation-cap mr-2"></i> COURSES
-        </button>
-        <button onclick="openTab(event, 'support')" class="tab-link">
-            <i class="fas fa-headset mr-2"></i> E-SUPPORT
-        </button>
-        <button onclick="openTab(event, 'place')" class="tab-link">
-            <i class="fas fa-user-graduate mr-2"></i> PLACEMENTS
-        </button>
-    </div>
-
-  <div class="container mx-auto px-6">
-    <div id="uni" class="tab-content active">
-        <div class="scroll-container flex gap-6 overflow-x-auto pb-10" style="display: flex; gap: 20px; overflow-x: auto; padding-bottom: 20px;">
-
-            <div class="uni-card" style="min-width: 280px; background: white; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); overflow: hidden; border: 1px solid #eee;">
-                <img src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Yenepoya" style="width: 100%; height: 180px; object-fit: cover;">
-                <div style="padding: 20px;">
-                    <h4 style="font-weight: 800; color: #1e3a8a; font-size: 1.1rem; margin: 0;">Yenepoya University</h4>
-                    <p style="font-size: 11px; color: #f97316; font-weight: bold; text-transform: uppercase; margin-top: 8px; letter-spacing: 1px;">UGC-DEB Approved</p>
-                </div>
-            </div>
-
-            <div class="uni-card" style="min-width: 280px; background: white; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); overflow: hidden; border: 1px solid #eee;">
-                <img src="https://images.unsplash.com/photo-1523050853023-8c2d27443ef8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Jain" style="width: 100%; height: 180px; object-fit: cover;">
-                <div style="padding: 20px;">
-                    <h4 style="font-weight: 800; color: #1e3a8a; font-size: 1.1rem; margin: 0;">Jain Online</h4>
-                    <p style="font-size: 11px; color: #f97316; font-weight: bold; text-transform: uppercase; margin-top: 8px; letter-spacing: 1px;">NAAC A++ Certified</p>
-                </div>
-            </div>
-
-            <div class="uni-card" style="min-width: 280px; background: white; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); overflow: hidden; border: 1px solid #eee;">
-                <img src="https://images.unsplash.com/photo-1541339907198-e08759dfc3ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="SNDT" style="width: 100%; height: 180px; object-fit: cover;">
-                <div style="padding: 20px;">
-                    <h4 style="font-weight: 800; color: #1e3a8a; font-size: 1.1rem; margin: 0;">SNDT University</h4>
-                    <p style="font-size: 11px; color: #f97316; font-weight: bold; text-transform: uppercase; margin-top: 8px; letter-spacing: 1px;">Women's Special</p>
-                </div>
-            </div>
-
-            <div class="uni-card" style="min-width: 280px; background: white; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); overflow: hidden; border: 1px solid #eee;">
-                <img src="https://images.unsplash.com/photo-1592280771190-3e2e4d571952?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Manipal" style="width: 100%; height: 180px; object-fit: cover;">
-                <div style="padding: 20px;">
-                    <h4 style="font-weight: 800; color: #1e3a8a; font-size: 1.1rem; margin: 0;">Manipal Online</h4>
-                    <p style="font-size: 11px; color: #f97316; font-weight: bold; text-transform: uppercase; margin-top: 8px; letter-spacing: 1px;">World Class Education</p>
-                </div>
-            </div>
-
-            <div class="uni-card" style="min-width: 280px; background: #f8fafc; border-radius: 15px; display: flex; align-items: center; justify-content: center; border: 2px dashed #cbd5e1;">
-                <div style="padding: 40px; color: #64748b; font-weight: bold; font-style: italic; text-align: center;">More Universities coming soon...</div>
-            </div>
-
-        </div>
-    </div>
-</div>
-        <div id="course-list" class="tab-content">
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="course-item group">
-                    <div class="p-8 bg-white rounded-[2.5rem] shadow-xl border-b-8 border-transparent group-hover:border-orange-500 transition-all">
-                        <i class="fas fa-laptop-code text-4xl text-blue-900 mb-4"></i>
-                        <h4 class="text-2xl font-black text-[#1e3a8a]">BCA / MCA</h4>
-                        <p class="text-sm text-slate-500 mt-2">Cloud, AI & Data Science specializations.</p>
-                        <button onclick="openDetails('bca')" class="mt-6 text-orange-500 font-black text-xs uppercase tracking-widest flex items-center gap-2 hover:translate-x-2 transition-transform">
-                            View Course Details <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="course-item group">
-                    <div class="p-8 bg-white rounded-[2.5rem] shadow-xl border-b-8 border-transparent group-hover:border-blue-900 transition-all">
-                        <i class="fas fa-chart-bar text-4xl text-orange-500 mb-4"></i>
-                        <h4 class="text-2xl font-black text-[#1e3a8a]">BBA / MBA</h4>
-                        <p class="text-sm text-slate-500 mt-2">HR, Logistics, and Global Finance.</p>
-                        <button onclick="openDetails('mba')" class="mt-6 text-[#1e3a8a] font-black text-xs uppercase tracking-widest flex items-center gap-2 hover:translate-x-2 transition-transform">
-                            View Course Details <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="course-item group">
-                    <div class="p-8 bg-white rounded-[2.5rem] shadow-xl border-b-8 border-transparent group-hover:border-orange-500 transition-all">
-                        <i class="fas fa-microscope text-4xl text-blue-900 mb-4"></i>
-                        <h4 class="text-2xl font-black text-[#1e3a8a]">B.Sc / M.Sc</h4>
-                        <p class="text-sm text-slate-500 mt-2">Psychology and Professional Science.</p>
-                        <button onclick="openDetails('science')" class="mt-6 text-orange-500 font-black text-xs uppercase tracking-widest flex items-center gap-2 hover:translate-x-2 transition-transform">
-                            View Course Details <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="support" class="tab-content">
-            <div class="grid md:grid-cols-4 gap-6">
-                <div class="bg-white p-8 rounded-[2rem] text-center shadow-lg border-2 border-slate-50">
-                    <i class="fas fa-desktop text-4xl text-orange-500 mb-4"></i>
-                    <h5 class="font-black text-[#1e3a8a]">LMS ACCESS</h5>
-                    <p class="text-xs text-slate-400 mt-2">24/7 Digital Learning Portal</p>
-                </div>
-                <div class="bg-white p-8 rounded-[2rem] text-center shadow-lg border-2 border-slate-50">
-                    <i class="fas fa-file-invoice-dollar text-4xl text-blue-900 mb-4"></i>
-                    <h5 class="font-black text-[#1e3a8a]">EMI SUPPORT</h5>
-                    <p class="text-xs text-slate-400 mt-2">Easy Monthly Fee Payments</p>
-                </div>
-                <div class="bg-white p-8 rounded-[2rem] text-center shadow-lg border-2 border-slate-50">
-                    <i class="fas fa-user-check text-4xl text-orange-500 mb-4"></i>
-                    <h5 class="font-black text-[#1e3a8a]">ADMISSION HUB</h5>
-                    <p class="text-xs text-slate-400 mt-2">End-to-End Documentation</p>
-                </div>
-                <div class="bg-white p-8 rounded-[2rem] text-center shadow-lg border-2 border-slate-50">
-                    <i class="fas fa-video text-4xl text-blue-900 mb-4"></i>
-                    <h5 class="font-black text-[#1e3a8a]">LIVE SESSIONS</h5>
-                    <p class="text-xs text-slate-400 mt-2">Interact with Top Faculty</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="place" class="tab-content">
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="relative group rounded-[3rem] overflow-hidden shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=400" class="w-full h-[400px] object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#1e3a8a] p-8 flex flex-col justify-end">
-                        <h5 class="text-white text-xl font-black">Sarah Johnson</h5>
-                        <p class="text-orange-400 text-xs font-bold uppercase">Placed at Microsoft</p>
-                        <p class="text-white/60 text-[10px] mt-1">MBA Graduate (Yenepoya)</p>
-                    </div>
-                </div>
-                <div class="relative group rounded-[3rem] overflow-hidden shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400" class="w-full h-[400px] object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-orange-600 p-8 flex flex-col justify-end">
-                        <h5 class="text-white text-xl font-black">Arjun Das</h5>
-                        <p class="text-white text-xs font-bold uppercase">Placed at Google</p>
-                        <p class="text-white/80 text-[10px] mt-1">MCA Graduate (Jain Online)</p>
-                    </div>
-                </div>
-                <div class="relative group rounded-[3rem] overflow-hidden shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400" class="w-full h-[400px] object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 p-8 flex flex-col justify-end">
-                        <h5 class="text-white text-xl font-black">Meera K.P</h5>
-                        <p class="text-orange-500 text-xs font-bold uppercase">Placed at Amazon</p>
-                        <p class="text-white/60 text-[10px] mt-1">BBA Graduate (SNDT)</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div id="courseModal" class="fixed inset-0 z-[999] hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-        <div class="bg-white w-full max-w-2xl rounded-[3rem] overflow-hidden shadow-2xl animate-slideUp">
-            <div class="relative p-10">
-                <button onclick="closeModal()" class="absolute top-6 right-8 text-slate-400 hover:text-orange-500 text-2xl transition-all">
-                    <i class="fas fa-times-circle"></i>
-                </button>
-
-                <div id="modalBody">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div id="modalIcon" class="w-16 h-16 rounded-2xl bg-orange-100 flex items-center justify-center text-3xl text-orange-500"></div>
-                        <div>
-                            <h4 id="modalTitle" class="text-3xl font-[1000] text-[#1e3a8a] leading-none"></h4>
-                            <p class="text-orange-500 text-[10px] font-black uppercase tracking-widest mt-2">Course Overview</p>
-                        </div>
-                    </div>
-
-                    <div class="space-y-6 text-slate-600 font-medium leading-relaxed">
-                        <p id="modalDesc" class="text-lg italic text-slate-400"></p>
-
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="bg-slate-50 p-6 rounded-3xl">
-                                <h5 class="text-[#1e3a8a] font-black text-xs uppercase mb-2">Duration</h5>
-                                <p id="modalDuration" class="text-slate-700 font-bold"></p>
-                            </div>
-                            <div class="bg-slate-50 p-6 rounded-3xl">
-                                <h5 class="text-[#1e3a8a] font-black text-xs uppercase mb-2">Eligibility</h5>
-                                <p id="modalEligibility" class="text-slate-700 font-bold"></p>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h5 class="text-[#1e3a8a] font-black text-xs uppercase mb-3">Key Benefits</h5>
-                            <ul id="modalBenefits" class="space-y-2 text-sm text-slate-600">
-                                </ul>
-                        </div>
-                    </div>
-
-                    <div class="mt-10 flex gap-4">
-                        <a href="https://wa.me/919495209080" class="flex-grow bg-[#1e3a8a] text-white py-4 rounded-2xl font-bold text-center shadow-lg hover:bg-orange-500 transition-all">Enroll Now</a>
-                        <button onclick="closeModal()" class="px-8 py-4 border-2 border-slate-100 rounded-2xl font-bold text-slate-400 hover:bg-slate-50 transition-all">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <div class="h-12 w-12 bg-[#f97316] rounded-xl flex items-center justify-center text-white text-2xl font-bold shadow-lg">CD</div>
+            <div>
+                <h1 class="text-xl font-extrabold text-[#1e3a8a] leading-none">CAREER DRIVE</h1>
+                <p class="text-[10px] tracking-[0.2em] font-bold text-orange-500 uppercase">Edu Consultancy</p>
+            </div>
+        </div>
 
-  <section id="contact" class="py-24 bg-slate-100">
+        <div class="hidden lg:flex space-x-8 font-semibold text-[#1e3a8a]">
+            <a href="index.html#home" class="hover:text-orange-500 transition">Home</a>
+            <a href="index.html#about" class="hover:text-orange-500 transition">About</a>
+            <a href="index.html#courses" class="hover:text-orange-500 transition">Services</a> <a href="scholarship.html" class="text-orange-600 font-bold border-b-2 border-orange-200">Scholarships</a> <a href="index.html#contact" class="hover:text-orange-500 transition">Contact</a>
+        </div>
+
+        <div class="flex items-center space-x-4">
+            <a href="https://wa.me/919495209080" class="hidden sm:flex bg-[#25D366] text-white px-6 py-2.5 rounded-full font-bold items-center shadow-lg hover:scale-105 transition">
+                <i class="fab fa-whatsapp mr-2 text-xl"></i> Chat Now
+            </a>
+            <button id="menu-btn" onclick="toggleMenu()" class="lg:hidden text-[#1e3a8a] focus:outline-none">
+                <i class="fas fa-bars text-2xl" id="menu-icon"></i>
+            </button>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-xl">
+        <div class="flex flex-col p-6 space-y-4 font-semibold text-[#1e3a8a]">
+            <a href="index.html#home" onclick="toggleMenu()" class="hover:text-orange-500 py-2 border-b border-gray-50">Home</a>
+            <a href="index.html#about" onclick="toggleMenu()" class="hover:text-orange-500 py-2 border-b border-gray-50">About</a>
+            <a href="index.html#courses" onclick="toggleMenu()" class="hover:text-orange-500 py-2 border-b border-gray-50">Services</a>
+            <a href="scholarship.html" class="text-orange-600 py-2 border-b border-gray-50 font-bold flex justify-between items-center">
+                Scholarships <span class="bg-orange-100 text-[10px] px-2 py-1 rounded">GO TO PAGE</span>
+            </a>
+            <a href="index.html#contact" onclick="toggleMenu()" class="hover:text-orange-500 py-2">Contact</a>
+        </div>
+    </div>
+</nav>
+    <section id="process" class="py-24">
+        <div class="container mx-auto px-6 text-center mb-16">
+            <h2 class="text-4xl font-extrabold text-[#1e3a8a] mb-4">How We Help You</h2>
+            <div class="w-24 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
+        </div>
+        <div class="container mx-auto px-6 grid md:grid-cols-4 gap-8">
+            <div class="text-center group">
+                <div class="w-16 h-16 bg-white shadow-xl rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-500 group-hover:text-white transition duration-300 text-[#1e3a8a] font-bold text-xl">1</div>
+                <h4 class="font-bold mb-2">Registration</h4>
+                <p class="text-sm text-gray-500">Contact us with your preferred courses.</p>
+            </div>
+            <div class="text-center group">
+                <div class="w-16 h-16 bg-white shadow-xl rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-500 group-hover:text-white transition duration-300 text-[#1e3a8a] font-bold text-xl">2</div>
+                <h4 class="font-bold mb-2">Counseling</h4>
+                <p class="text-sm text-gray-500">One-on-one session with expert counselors.</p>
+            </div>
+            <div class="text-center group">
+                <div class="w-16 h-16 bg-white shadow-xl rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-500 group-hover:text-white transition duration-300 text-[#1e3a8a] font-bold text-xl">3</div>
+                <h4 class="font-bold mb-2">Selection</h4>
+                <p class="text-sm text-gray-500">Shortlisting best colleges & universities.</p>
+            </div>
+            <div class="text-center group">
+                <div class="w-16 h-16 bg-white shadow-xl rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-500 group-hover:text-white transition duration-300 text-[#1e3a8a] font-bold text-xl">4</div>
+                <h4 class="font-bold mb-2">Admission</h4>
+                <p class="text-sm text-gray-500">Completion of documentation and entry.</p>
+            </div>
+        </div>
+    </section>
+
+   <section id="contact" class="py-24 bg-slate-100">
     <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-12">
-        <div class="bg-white p-10 rounded-[40px] shadow-2xl">
-            <h2 class="text-3xl font-extrabold text-[#1e3a8a] mb-8 text-center lg:text-left">Quick Inquiry</h2>
-            <form id="consultancyForm" class="space-y-6">
+        <div class="bg-white p-10 rounded-[40px] shadow-2xl animate-fadeIn">
+            <h2 class="text-3xl font-extrabold text-[#1e3a8a] mb-8 text-center lg:text-left">Inquiry Form</h2>
+            <form id="whatsappForm" class="space-y-6">
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-2">Student Name</label>
-                        <input type="text" id="name" placeholder="Enter Full Name" required class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-orange-500 outline-none">
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Your Name</label>
+                        <input type="text" id="userName" required placeholder="John Doe" class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-orange-500 outline-none">
                     </div>
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-2">Phone Number</label>
-                        <input type="tel" id="phone" placeholder="WhatsApp Number" required class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-orange-500 outline-none">
+                        <input type="tel" id="userPhone" required placeholder="+91 0000 000 000" class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-orange-500 outline-none">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-2">Interested Course</label>
-                    <select id="course" class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-orange-500 outline-none">
-                        <option value="Online Degree (UG/PG)">Online Degree (UG/PG)</option>
-                        <option value="BCA / MCA">BCA / MCA</option>
-                        <option value="MBA / BBA">MBA / BBA</option>
-                        <option value="B.Sc / M.Sc">B.Sc / M.Sc</option>
-                        <option value="Medical / Engineering">Medical / Engineering</option>
+                    <label class="block text-sm font-bold text-gray-700 mb-2">Select Course</label>
+                    <select id="userCourse" class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-orange-500 outline-none">
+                        <option value="Not Specified">-- Select a Course --</option>
+                        <option value="MBBS / Medical">MBBS / Medical</option>
+                        <option value="Engineering (B.Tech)">Engineering (B.Tech)</option>
+                        <option value="Management (BBA/MBA)">Management (BBA/MBA)</option>
+                        <option value="BA / MA Degree">BA / MA Degree</option>
+                        <option value="BCA / MCA / Tech">BCA / MCA / Tech</option>
                     </select>
                 </div>
-                <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-2">Message (Optional)</label>
-                    <textarea id="message" rows="3" placeholder="Tell us about your education goals..." class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-orange-500 outline-none"></textarea>
-                </div>
-                <button type="submit" class="w-full bg-[#1e3a8a] hover:bg-orange-600 text-white font-bold py-5 rounded-2xl transition-all shadow-xl shadow-blue-900/20 flex items-center justify-center gap-2">
-                    <i class="fab fa-whatsapp"></i> Send Application on WhatsApp
+                <button type="button" onclick="sendToWhatsApp()" class="w-full bg-[#1e3a8a] hover:bg-orange-600 text-white font-bold py-5 rounded-2xl transition-all shadow-xl shadow-blue-900/20 transform hover:-translate-y-1">
+                    <i class="fab fa-whatsapp mr-2"></i> Send Application Details
                 </button>
             </form>
         </div>
 
         <div class="flex flex-col justify-center">
-            <h2 class="text-4xl font-extrabold text-[#1e3a8a] mb-6">Connect With Us</h2>
-            <div class="space-y-6">
+            <h2 class="text-4xl font-extrabold text-[#1e3a8a] mb-6">Visit Our Office</h2>
+            <div class="space-y-6 mb-8">
                 <div class="flex items-start space-x-6">
                     <div class="bg-orange-500 text-white w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
                         <i class="fas fa-map-marked-alt"></i>
@@ -608,229 +404,312 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; }
                         <p class="text-gray-600">Pazheri Building, Near Prashanti Ayurveda,<br>Chungam, Kondotty, Malappuram - 673638</p>
                     </div>
                 </div>
-                <div class="flex items-start space-x-6 hover:translate-x-2 transition-transform cursor-pointer" onclick="window.location.href='tel:+919495209080'">
+                <div class="flex items-start space-x-6">
                     <div class="bg-[#1e3a8a] text-white w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
                         <i class="fas fa-headset"></i>
                     </div>
                     <div>
                         <p class="font-bold text-[#1e3a8a]">Call Support</p>
-                        <p class="text-gray-600">+91 9495 209 080<br>+91 7591 952 244</p>
+                        <p class="text-gray-600 font-bold mt-1">
+                            <a href="tel:+919495209080" class="hover:text-orange-500">9495 209 080</a><br>
+                            <a href="tel:+917591952244" class="hover:text-orange-500">7591 952 244</a>
+                        </p>
                     </div>
                 </div>
             </div>
 
-            <div class="mt-8 rounded-3xl overflow-hidden shadow-lg h-48 border-4 border-white relative group">
+            <div onclick="openGoogleMap()" class="cursor-pointer rounded-3xl overflow-hidden shadow-lg h-64 bg-slate-200 border-4 border-white group relative">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.626296316278!2d75.9602!3d11.1407!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba64f8400000001%3A0x0!2sKondotty%20Chungam!5e0!3m2!1sen!2sin!4v1620000000000"
-                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    class="w-full h-full grayscale-[50%] group-hover:grayscale-0 transition duration-500"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3914.000000000000!2d75.9556!3d11.1333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDA4JzAwLjAiTiA3NcKwNTcnMjAuMiJF!5e0!3m2!1sen!2sin!4v1708240000000"
+                    style="border:0; pointer-events: none;"
+                    allowfullscreen=""
+                    loading="lazy">
+                </iframe>
+                <div class="absolute inset-0 bg-[#1e3a8a]/10 group-hover:bg-transparent transition duration-500"></div>
+                <div class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md p-3 rounded-2xl flex justify-between items-center shadow-lg">
+                    <div>
+                        <p class="text-[10px] font-black text-blue-900 uppercase tracking-widest">Office Location</p>
+                        <p class="text-xs text-gray-600">Kondotty Chungam, Malappuram</p>
+                    </div>
+                    <i class="fas fa-external-link-alt text-blue-600"></i>
+                </div>
             </div>
         </div>
     </div>
-</section>
+       </section>
+<footer class="bg-[#0f172a] text-gray-400 py-16">
+    <div class="container mx-auto px-6 grid md:grid-cols-4 gap-12 border-b border-white/5 pb-12">
+        <div class="col-span-1 md:col-span-2">
+            <div class="flex items-center space-x-3 mb-6">
+                <div class="h-12 w-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-orange-500/20">CD</div>
+                <h1 class="text-2xl font-bold text-white tracking-tight">Career Drive <span class="text-orange-500 italic">Edu</span></h1>
+            </div>
+            <p class="max-w-md leading-relaxed text-slate-400">
+                Dedicated to providing high-quality educational consulting and admission support for students aiming for excellence. We bridge the gap between your dreams and top-tier universities.
+            </p>
+            <div class="flex space-x-4 mt-6">
+                <a href="https://instagram.com/yourprofile" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-gradient-to-tr from-yellow-500 via-red-500 to-purple-500 hover:text-white transition-all duration-300"><i class="fab fa-instagram"></i></a>
+                <a href="https://facebook.com/yourpage" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-300"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://wa.me/919495209080" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-green-500 hover:text-white transition-all duration-300"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
 
-   <footer class="bg-[#0f1e3a] text-white py-16">
-  <div class="container mx-auto px-6 grid md:grid-cols-3 gap-12">
+        <div>
+            <h4 class="text-white font-bold mb-6 uppercase text-xs tracking-[0.2em]">Navigation</h4>
+            <ul class="space-y-4 text-sm">
+                <li><a href="#about" class="hover:text-orange-500 transition-colors flex items-center group"><i class="fas fa-chevron-right text-[10px] mr-2 text-orange-500/50 group-hover:translate-x-1 transition-transform"></i> About Us</a></li>
+                <li><a href="#services" class="hover:text-orange-500 transition-colors flex items-center group"><i class="fas fa-chevron-right text-[10px] mr-2 text-orange-500/50 group-hover:translate-x-1 transition-transform"></i> Our Services</a></li>
+                <li><a href="#contact" class="hover:text-orange-500 transition-colors flex items-center group"><i class="fas fa-chevron-right text-[10px] mr-2 text-orange-500/50 group-hover:translate-x-1 transition-transform"></i> Contact Support</a></li>
+            </ul>
+        </div>
 
-    <!-- Branding -->
-    <div class="space-y-4">
-      <h2 class="text-3xl font-extrabold text-orange-500">CAREER DRIVE</h2>
-      <p class="text-gray-300 text-sm">
-        We empower your career with expert guidance, top university selections, and seamless online admissions.
-      </p>
-      <div class="flex space-x-3 mt-2">
-        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://wa.me/919495209080" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition"><i class="fab fa-whatsapp"></i></a>
-      </div>
+        <div>
+            <h4 class="text-white font-bold mb-6 uppercase text-xs tracking-[0.2em]">Legal</h4>
+            <ul class="space-y-4 text-sm">
+                <li><a href="#" class="hover:text-orange-500 transition-colors flex items-center"><i class="fas fa-shield-alt text-[10px] mr-2 text-orange-500/50"></i> Privacy Policy</a></li>
+                <li><a href="#" class="hover:text-orange-500 transition-colors flex items-center"><i class="fas fa-file-contract text-[10px] mr-2 text-orange-500/50"></i> Terms of Service</a></li>
+            </ul>
+        </div>
     </div>
 
-    <!-- Quick Links -->
-    <div>
-      <h3 class="text-xl font-semibold border-b-2 border-orange-500 pb-2 mb-4">Quick Links</h3>
-      <ul class="space-y-2 text-gray-400 text-sm">
-        <li><a href="#home" class="hover:text-orange-500 flex items-center gap-2"><i class="fas fa-angle-right text-[12px]"></i> Home</a></li>
-        <li><a href="#services" class="hover:text-orange-500 flex items-center gap-2"><i class="fas fa-angle-right text-[12px]"></i> Online Degrees</a></li>
-        <li><a href="#contact" class="hover:text-orange-500 flex items-center gap-2"><i class="fas fa-angle-right text-[12px]"></i> Admission 2024</a></li>
-        <li><a href="#place" class="hover:text-orange-500 flex items-center gap-2"><i class="fas fa-angle-right text-[12px]"></i> Placements</a></li>
-      </ul>
+    <div class="container mx-auto px-6 mt-10 flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs tracking-wide">
+        <p>&copy; 2026 <span class="text-white font-bold">Career Drive Edu</span> Consultancy Services. All Rights Reserved.</p>
+        <p class="mt-4 md:mt-0 text-slate-500 uppercase tracking-widest flex items-center">
+            Designed for Excellence <i class="fas fa-heart ml-2 text-red-500/50"></i>
+        </p>
     </div>
-
-    <!-- Newsletter & Courses -->
-    <div>
-      <h3 class="text-xl font-semibold border-b-2 border-orange-500 pb-2 mb-4">Subscribe & Courses</h3>
-      <p class="text-gray-400 text-sm mb-4">
-        Get the latest course updates and admission alerts directly to your inbox.
-      </p>
-      <form class="flex flex-col sm:flex-row gap-2 mb-6">
-        <input type="email" placeholder="Your Email" class="flex-1 px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-sm focus:outline-none focus:border-orange-500 text-white" />
-        <button class="bg-orange-500 px-4 py-3 rounded-lg hover:bg-white hover:text-orange-500 transition-all">
-          <i class="fas fa-paper-plane"></i>
-        </button>
-      </form>
-      <h4 class="text-lg font-semibold text-orange-500 mb-2">Top Courses</h4>
-      <ul class="text-gray-400 text-sm space-y-1">
-        <li><a href="#" class="hover:text-white">Online MBA / BBA</a></li>
-        <li><a href="#" class="hover:text-white">BCA / MCA (IT)</a></li>
-        <li><a href="#" class="hover:text-white">MBBS / Medical Admissions</a></li>
-        <li><a href="#" class="hover:text-white">B.Sc / M.Sc Nursing</a></li>
-      </ul>
-    </div>
-
-  </div>
-
-  <div class="mt-12 text-center border-t border-gray-700 pt-6 text-gray-400 text-xs">
-    © 2024 <span class="text-orange-500 font-bold">Career Drive</span>. All Rights Reserved.
-    <br class="md:hidden"> Powered by <a href="#" class="hover:text-white underline">NextGen Web Solutions</a>
-  </div>
 </footer>
 
-<script>
-    // Tab functionality
-    function openTab(evt, tabName) {
-        var i, tabcontent, tablinks;
-
-        // Hide all tabs
-        tabcontent = document.getElementsByClassName("tab-content");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-            tabcontent[i].classList.remove("active");
-        }
-
-        // Remove active class from buttons
-        tablinks = document.getElementsByClassName("tab-link");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].classList.remove("active");
-        }
-
-        // Show clicked tab
-        document.getElementById(tabName).style.display = "block";
-        document.getElementById(tabName).classList.add("active");
-        evt.currentTarget.classList.add("active");
-    }
-
-    // Hamburger menu
-    document.addEventListener('DOMContentLoaded', () => {
-        const btn = document.getElementById('mobile-menu-btn'); // HTML id match cheythu
-        const menu = document.getElementById('mobile-nav-container');
-        const icon = document.getElementById('menu-icon');
-        const links = document.querySelectorAll('.mobile-link');
-
-        // Button click cheythal menu toggle aakum
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            menu.classList.toggle('hidden');
-
-            // Icon change: Bars <-> X
-            if (menu.classList.contains('hidden')) {
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-bars-staggered');
-            } else {
-                icon.classList.remove('fa-bars-staggered');
-                icon.classList.add('fa-xmark');
-            }
-        });
-
-        // Menu links click cheythal menu auto-close
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-                icon.classList.replace('fa-xmark', 'fa-bars-staggered');
-            });
-        });
-
-        // Click outside menu close
-        document.addEventListener('click', (event) => {
-            if (!menu.contains(event.target) && !btn.contains(event.target)) {
-                menu.classList.add('hidden');
-                icon.classList.replace('fa-xmark', 'fa-bars-staggered');
-            }
-        });
-    });
-
-    // Course modal logic
-    const courseData = {
-        bca: {
-            title: "BCA / MCA Online",
-            icon: "fas fa-laptop-code",
-            desc: "Specialized in Artificial Intelligence, Cloud Computing, and Data Science.",
-            duration: "3 Years / 2 Years",
-            eligibility: "+2 Pass / Any Degree",
-            benefits: ["100% Online Exams", "UGC-DEB Approved", "World Class LMS Portal", "Dedicated Technical Mentor"]
+ <script>
+    // 1. DATA STRUCTURE
+    const finalData = {
+        uni: {
+            title: "Partnered Universities",
+            desc: "We provide direct admission to 7+ top-tier accredited institutions.",
+            items: [
+                { name: "Yenepoya University", sub: "Mangalore", info: "NAAC A+ Accredited" },
+                { name: "Jain University", sub: "Bangalore", info: "UGC Category 1" },
+                { name: "Manipal Academy", sub: "Manipal", info: "Institution of Eminence" },
+                { name: "Amrita Vishwa Vidyapeetham", sub: "Coimbatore", info: "A++ Grade University" },
+                { name: "Bharathiar University", sub: "Coimbatore", info: "State Govt University" },
+                { name: "Hindustan Institute", sub: "Chennai", info: "Top Engineering Hub" },
+                { name: "Sathyabama Institute", sub: "Chennai", info: "Excellent Placement Record" }
+            ]
         },
-        mba: {
-            title: "MBA / BBA Online",
-            icon: "fas fa-chart-line",
-            desc: "Master the world of Logistics, HR, Marketing, and Global Finance.",
-            duration: "2 Years / 3 Years",
-            eligibility: "Any Degree / +2 Pass",
-            benefits: ["Weekend Live Sessions", "Global Networking Opportunities", "Placement Assistance", "Flexible Exam Schedule"]
+        courses: {
+            title: "Available Academic Streams",
+            desc: "Select a category to see the full list of courses available for admission.",
+            isCategory: true,
+            items: [
+                { id: "ba", name: "BA Courses", icon: "fa-book" },
+                { id: "ma", name: "MA Courses", icon: "fa-user-graduate" },
+                { id: "eng", name: "Engineering (B.Tech)", icon: "fa-cog" },
+                { id: "tech", name: "BCA / MCA / IT", icon: "fa-laptop-code" },
+                { id: "mgmt", name: "MBA / BBA", icon: "fa-briefcase" }
+            ]
         },
-        science: {
-            title: "B.Sc / M.Sc Online",
-            icon: "fas fa-microscope",
-            desc: "Advanced learning in Psychology, IT, and Professional Science streams.",
-            duration: "3 Years / 2 Years",
-            eligibility: "+2 Science / B.Sc Degree",
-            benefits: ["Practical Virtual Labs", "Expert Faculty", "Global Recognition", "Career Support"]
+        place: {
+            title: "Placement Excellence",
+            desc: "Our students are successfully placed in world-leading corporate giants.",
+            isPlacement: true,
+            items: [
+                { company: "TCS / Infosys", student: "Arjun Das", role: "Software Engineer", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400", details: "Placed with top package." },
+                { company: "Apollo Hospitals", student: "Meera Nair", role: "Medical Admin", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400", details: "Joined Healthcare Management." },
+                { company: "Wipro Technologies", student: "Kevin Paul", role: "Business Analyst", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400", details: "Secured role in 2024 drive." }
+            ]
+        },
+        support: {
+            title: "Admission Guidance & Support",
+            desc: "Expert support throughout your academic journey.",
+            items: [
+                { name: "Expert Counseling", info: "Right course & university selection." },
+                { name: "Online Admission Support", info: "End-to-end application processing." },
+                { name: "Documentation Aid", info: "Full verification & paper work help." },
+                { name: "Scholarship Guidance", info: "Financial aid & merit support." },
+                { name: "Educational Loan Aid", info: "Bank documentation assistance." },
+                { name: "Post Admission Support", info: "Continuous guidance until course completion." }
+            ]
         }
     };
 
-    function openDetails(courseKey) {
-        const course = courseData[courseKey];
-        if (!course) return;
+    const subCourses = {
+        ba: [
+            { name: "BA English", elig: "12th Pass", dur: "3 Years", desc: "Focus on World Literature & Communication." },
+            { name: "BA Sociology", elig: "12th Pass", dur: "3 Years", desc: "Study of society & social behavior." },
+            { name: "BA History", elig: "12th Pass", dur: "3 Years", desc: "Indian & Global History analysis." },
+            { name: "BA Psychology", elig: "12th Pass", dur: "3 Years", desc: "Understanding human mind & behavior." },
+            { name: "BA Economics", elig: "12th Pass", dur: "3 Years", desc: "Principles of economy & finance." }
+        ],
+        ma: [
+            { name: "MA English", elig: "Degree", dur: "2 Years", desc: "Advanced Literary Criticism." },
+            { name: "MA Sociology", elig: "Degree", dur: "2 Years", desc: "Advanced Social Research." },
+            { name: "MA Psychology", elig: "Degree", dur: "2 Years", desc: "Specialization in Clinical Psychology." }
+        ],
+        eng: [
+            { name: "B.Tech CSE", elig: "12th (PCM)", dur: "4 Years", desc: "AI, ML, & Software Development." },
+            { name: "B.Tech Cyber Security", elig: "12th (PCM)", dur: "4 Years", desc: "Digital Security & Ethical Hacking." },
+            { name: "B.Tech Civil", elig: "12th (PCM)", dur: "4 Years", desc: "Infrastructure & Structural Planning." },
+            { name: "B.Tech Robotics", elig: "12th (PCM)", dur: "4 Years", desc: "Automation & Future Robotics." }
+        ],
+        tech: [
+            { name: "BCA", elig: "12th Pass", dur: "3 Years", desc: "Application & Software Development." },
+            { name: "B.Sc IT", elig: "12th Pass", dur: "3 Years", desc: "Information Technology systems." },
+            { name: "MCA", elig: "Degree (Maths)", dur: "2 Years", desc: "Post Graduation in Computing." }
+        ],
+        mgmt: [
+            { name: "MBA Finance", elig: "Degree", dur: "2 Years", desc: "Banking & Financial Management." },
+            { name: "MBA HR", elig: "Degree", dur: "2 Years", desc: "Human Resource & Recruitment." },
+            { name: "BBA Logistics", elig: "12th Pass", dur: "3 Years", desc: "Supply Chain & Operations." }
+        ]
+    };
 
-        document.getElementById('modalTitle').innerText = course.title;
-        document.getElementById('modalIcon').innerHTML = `<i class="${course.icon}"></i>`;
-        document.getElementById('modalDesc').innerText = course.desc;
-        document.getElementById('modalDuration').innerText = course.duration;
-        document.getElementById('modalEligibility').innerText = course.eligibility;
+    // 2. MAIN SERVICES RENDER
+    function showService(key, btn) {
+        const data = finalData[key];
+        const display = document.getElementById('service-display');
+        if (!display) return;
 
-        const benefitsList = document.getElementById('modalBenefits');
-        benefitsList.innerHTML = '';
-        course.benefits.forEach(benefit => {
-            const li = document.createElement('li');
-            li.className = 'flex items-center gap-2';
-            li.innerHTML = `<i class="fas fa-check-circle text-orange-500"></i> ${benefit}`;
-            benefitsList.appendChild(li);
+        // Button UI highlight fix
+        document.querySelectorAll('.service-btn').forEach(b => {
+            b.classList.remove('bg-white', 'text-blue-900', 'shadow-lg');
+            b.classList.add('border-white/20');
         });
 
-        const modal = document.getElementById('courseModal');
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
+        const targetBtn = btn || document.querySelector(`button[onclick*="'${key}'"]`);
+        if (targetBtn) {
+            targetBtn.classList.add('bg-white', 'text-blue-900', 'shadow-lg');
+            targetBtn.classList.remove('border-white/20');
+        }
+
+        let html = `<div class="animate-fadeIn">
+                        <h3 class="text-3xl font-black text-blue-900 mb-2">${data.title}</h3>
+                        <div class="w-16 h-1 bg-orange-500 mb-6"></div>
+                        <p class="text-gray-500 mb-10 max-w-2xl">${data.desc}</p>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">`;
+
+        data.items.forEach(item => {
+            if (data.isCategory) {
+                html += `<div onclick="showSubList('${item.id}')" class="p-8 bg-blue-50 rounded-[24px] cursor-pointer hover:bg-blue-100 transition border-b-4 border-transparent hover:border-blue-600 group">
+                            <i class="fas ${item.icon} text-4xl text-blue-600 mb-4 group-hover:scale-110 transition"></i>
+                            <h4 class="font-bold text-xl text-blue-900">${item.name}</h4>
+                            <p class="text-xs text-blue-400 mt-2 font-black uppercase tracking-widest italic">View all courses →</p>
+                        </div>`;
+            } else if (data.isPlacement) {
+                html += `<div class="bg-white border border-slate-100 rounded-[24px] overflow-hidden shadow-sm group hover:shadow-xl transition">
+                            <div class="h-40 overflow-hidden"><img src="${item.img}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"></div>
+                            <div class="p-5">
+                                <span class="text-[10px] font-black text-orange-600 uppercase tracking-tighter">${item.company}</span>
+                                <h4 class="font-bold text-blue-900 text-lg">${item.student}</h4>
+                                <p class="text-xs text-gray-400 italic font-bold">"${item.role}"</p>
+                            </div>
+                        </div>`;
+            } else {
+                html += `<div class="p-6 bg-slate-50 rounded-[24px] border border-slate-100 hover:border-orange-200 transition">
+                            <h4 class="text-lg font-bold text-blue-900">${item.name}</h4>
+                            <p class="text-orange-600 text-[10px] font-black uppercase mt-1 tracking-widest">${item.sub || item.info}</p>
+                        </div>`;
+            }
+        });
+        display.innerHTML = html + `</div></div>`;
     }
 
-    function closeModal() {
-        const modal = document.getElementById('courseModal');
-        modal.classList.remove('flex');
-        modal.classList.add('hidden');
+    // 3. SUB-COURSE LIST RENDER
+    function showSubList(id) {
+        const list = subCourses[id] || [];
+        const display = document.getElementById('service-display');
+
+        let html = `<div class="animate-fadeIn">
+                    <button onclick="showService('courses')" class="mb-6 text-blue-600 font-bold hover:translate-x-[-5px] transition flex items-center">
+                        <i class="fas fa-arrow-left mr-2"></i> BACK TO CATEGORIES
+                    </button>
+                    <div class="grid md:grid-cols-2 gap-8">`;
+
+        list.forEach(c => {
+            html += `<div class="p-8 bg-white border-2 border-slate-50 rounded-[32px] shadow-sm hover:shadow-lg transition">
+                        <h4 class="text-2xl font-black text-blue-900 mb-2">${c.name}</h4>
+                        <p class="text-sm text-gray-500 mb-6">${c.desc}</p>
+                        <div class="flex flex-wrap gap-3 mb-8">
+                            <span class="bg-blue-50 text-blue-700 px-4 py-1 rounded-full text-[10px] font-black">ELIGIBILITY: ${c.elig}</span>
+                            <span class="bg-orange-50 text-orange-700 px-4 py-1 rounded-full text-[10px] font-black">${c.dur}</span>
+                        </div>
+                        <button onclick="contactWA('${c.name}')" class="w-full bg-[#25D366] text-white py-4 rounded-2xl font-black hover:bg-green-600 shadow-lg transition transform hover:-translate-y-1">
+                           <i class="fab fa-whatsapp mr-2"></i> VIEW FULL DETAILS & APPLY
+                        </button>
+                    </div>`;
+        });
+        display.innerHTML = html + `</div></div>`;
     }
 
-    // Close modal on backdrop click
-    window.onclick = function(event) {
-        const modal = document.getElementById('courseModal');
-        if (event.target == modal) closeModal();
+    // 4. WHATSAPP ACTION (Common)
+    function contactWA(course) {
+        const message = encodeURIComponent(`Hi, I am looking for admission details for ${course}. Please provide the eligibility and fee structure.`);
+        window.open(`https://wa.me/919495209080?text=${message}`, '_blank');
     }
 
-    // Form WhatsApp
-    document.getElementById('consultancyForm').addEventListener('submit', function(e) {
-        e.preventDefault();
+    // 5. CONTACT FORM ACTION
+    function sendToWhatsApp() {
+        const name = document.getElementById('userName').value;
+        const phone = document.getElementById('userPhone').value;
+        const course = document.getElementById('userCourse').value;
 
-        const name = document.getElementById('name').value;
-        const phone = document.getElementById('phone').value;
-        const course = document.getElementById('course').value;
-        const message = document.getElementById('message').value;
+        if (name.trim() === "" || phone.trim() === "") {
+            alert("Please enter your name and phone number.");
+            return;
+        }
 
-        const myWhatsApp = "919495209080";
+        const message = encodeURIComponent(
+            `*NEW ADMISSION INQUIRY*\n` +
+            `--------------------------\n` +
+            `*Name:* ${name}\n` +
+            `*Phone:* ${phone}\n` +
+            `*Course:* ${course}\n\n` +
+            `Hi, I am interested in admission details. Please contact me.`
+        );
 
-        const text = `*New Admission Inquiry*%0A%0A` +
-                     `*Name:* ${name}%0A` +
-                     `*Phone:* ${phone}%0A` +
-                     `*Course:* ${course}%0A` +
-                     `*Message:* ${message}`;
+        window.open(`https://wa.me/919495209080?text=${message}`, '_blank');
+    }
 
-        window.open(`https://wa.me/${myWhatsApp}?text=${text}`, '_blank');
-    });
+    // 6. GOOGLE MAP ACTION
+    function openGoogleMap() {
+        // Pazheri Building, Kondotty Chungam exact location
+        const mapURL = "https://www.google.com/maps/search/Pazheri+Building+Kondotty+Chungam";
+        window.open(mapURL, '_blank');
+    }
+
+    // INITIAL LOAD
+    window.onload = () => {
+        showService('uni');
+    };
+     // Mobile Menu Toggle Function
+const menuBtn = document.getElementById('menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const menuIcon = document.getElementById('menu-icon');
+
+function toggleMenu() {
+    mobileMenu.classList.toggle('hidden');
+    // Change icon from bars to X when open
+    if (mobileMenu.classList.contains('hidden')) {
+        menuIcon.classList.remove('fa-times');
+        menuIcon.classList.add('fa-bars');
+    } else {
+        menuIcon.classList.remove('fa-bars');
+        menuIcon.classList.add('fa-times');
+    }
+}
+
+menuBtn.addEventListener('click', toggleMenu);
+     function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const icon = document.getElementById('menu-icon');
+    menu.classList.toggle('hidden');
+    if(menu.classList.contains('hidden')) {
+        icon.classList.replace('fa-times', 'fa-bars');
+    } else {
+        icon.classList.replace('fa-bars', 'fa-times');
+    }
+}
+
 </script>
 
 </body>
