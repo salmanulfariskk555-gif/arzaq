@@ -197,7 +197,7 @@ section h3 {
         <div class="flex items-center space-x-4 w-full md:w-auto justify-center md:justify-start">
             <img src="https://i.postimg.cc/MHwxL6NL/Whats-App-Image-2026-02-11-at-8-20-37-PM.jpg"
                  alt="Logo"
-                 class="w-16 h-16 md:w-24 md:h-24 rounded-xl object-cover shadow-md">
+                 class="w-16 h-16 md:w-24 md:h-24 object-contain">
 
             <div class="flex flex-col">
                 <h1 class="text-3xl md:text-4xl font-black leading-tight whitespace-nowrap">
@@ -230,8 +230,10 @@ section h3 {
     <div class="absolute bottom-20 left-0 w-64 h-64 bg-[#05966905] rounded-full blur-3xl -z-10"></div>
 
     <div class="max-w-7xl mx-auto w-full px-6 py-4">
-        <div class="flex flex-col lg:flex-row items-center gap-6">
+        <!-- FIXED HERE -->
+        <div class="flex flex-col lg:flex-row lg:items-start items-center gap-6">
 
+            <!-- LEFT CONTENT -->
             <div class="w-full lg:w-1/2 space-y-4 text-center lg:text-left order-1">
                 <div class="space-y-2">
                     <h2 class="text-5xl md:text-7xl lg:text-8xl font-black leading-tight text-slate-900 pt-4">
@@ -245,44 +247,52 @@ section h3 {
                     </p>
                 </div>
 
-             <div class="relative flex flex-col items-center lg:items-start pt-2">
-    <div class="relative flex items-center justify-center lg:justify-start w-full min-h-[110px]">
+                <div class="relative flex flex-col items-center lg:items-start lg:ml-16 pt-2">
+                    <div class="relative flex items-center justify-center lg:justify-start w-full min-h-[110px]">
 
-        <a id="ayurvedic-opt" href="#products-section" onclick="filterProducts('ayurveda')" class="absolute flex flex-col items-center gap-1 opacity-0 transition-all duration-500 pointer-events-none z-10">
-            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border-2 border-emerald-500 flex items-center justify-center shadow-lg">
-                <span class="text-xl">🌿</span>
+                        <a id="ayurvedic-opt" href="#products-section" onclick="filterProducts('ayurveda')" class="absolute flex flex-col items-center gap-1 opacity-0 transition-all duration-500 pointer-events-none z-10">
+                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border-2 border-emerald-500 flex items-center justify-center shadow-lg">
+                                <span class="text-xl">🌿</span>
+                            </div>
+                            <span class="text-[8px] font-black text-emerald-700 uppercase">Ayurvedic</span>
+                        </a>
+
+                        <button onclick="toggleProducts()" class="relative z-30 px-10 py-4 bg-[#059669] text-white rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] shadow-xl active:scale-95 transition-all">
+                            Our Products
+                        </button>
+
+                        <a id="medicine-opt" href="#products-section" onclick="filterProducts('allopathy')" class="absolute flex flex-col items-center gap-1 opacity-0 transition-all duration-500 pointer-events-none z-10">
+                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border-2 border-blue-500 flex items-center justify-center shadow-lg">
+                                <span class="text-xl">💊</span>
+                            </div>
+                            <span class="text-[8px] font-black text-blue-700 uppercase">Allopathic</span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <!-- MOBILE IMAGE -->
+                <div class="lg:hidden mt-2 flex justify-center">
+                    <div class="relative w-48 h-48">
+                        <img src="https://i.postimg.cc/MHwxL6NL/Whats-App-Image-2026-02-11-at-8-20-37-PM.jpg"
+                             class="w-full h-full object-contain animate-float"
+                             alt="Z Pharmaka Logo Mobile">
+                    </div>
+                </div>
             </div>
-            <span class="text-[8px] font-black text-emerald-700 uppercase">Ayurvedic</span>
-        </a>
 
-        <button onclick="toggleProducts()" class="relative z-30 px-10 py-4 bg-[#059669] text-white rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] shadow-xl active:scale-95 transition-all">
-            Our Products
-        </button>
-
-        <a id="medicine-opt" href="#products-section" onclick="filterProducts('allopathy')" class="absolute flex flex-col items-center gap-1 opacity-0 transition-all duration-500 pointer-events-none z-10">
-            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border-2 border-blue-500 flex items-center justify-center shadow-lg">
-                <span class="text-xl">💊</span>
+            <!-- RIGHT IMAGE (FIXED ALIGNMENT) -->
+            <div class="hidden lg:flex lg:w-1/2 justify-end items-start order-2">
+                <div class="relative w-[400px] h-[400px] animate-float">
+                    <img src="https://i.postimg.cc/MHwxL6NL/Whats-App-Image-2026-02-11-at-8-20-37-PM.jpg"
+                         class="w-full h-full object-contain"
+                         alt="Z Pharmaka Logo Desktop">
+                </div>
             </div>
-            <span class="text-[8px] font-black text-blue-700 uppercase">Allopathic</span>
-        </a>
-    </div>
-</div>
 
-<div class="lg:hidden mt-2 flex justify-center">
-    <div class="relative w-48 h-48">
-        <img src="https://i.postimg.cc/MHwxL6NL/Whats-App-Image-2026-02-11-at-8-20-37-PM.jpg"
-             class="w-full h-full object-contain animate-float"
-             alt="Z Pharmaka Logo Mobile">
+        </div>
     </div>
-</div>
-
-<div class="hidden lg:w-1/2 lg:flex justify-center lg:justify-end order-2">
-    <div class="relative w-[400px] h-[400px] animate-float">
-        <img src="https://i.postimg.cc/MHwxL6NL/Whats-App-Image-2026-02-11-at-8-20-37-PM.jpg"
-             class="w-full h-full object-contain"
-             alt="Z Pharmaka Logo Desktop">
-    </div>
-</div>
+</section>
   <section id="about" class="max-w-7xl mx-auto px-6 py-28 bg-white">
     <div class="grid lg:grid-cols-2 gap-16 items-center">
 
@@ -541,7 +551,22 @@ section h3 {
             </form>
         </div>
     </div>
+    <div id="product-modal">
+  <div class="bg-white max-w-md w-full rounded-3xl p-6 relative">
+    <button onclick="closeProduct()" class="absolute top-4 right-4 text-xl font-black">✕</button>
+
+    <h3 id="modal-title" class="text-2xl font-black mb-2"></h3>
+    <p id="modal-comp" class="text-sm font-bold text-slate-500 mb-4"></p>
+    <p id="modal-desc" class="text-slate-600 text-sm mb-6"></p>
+
+    <a id="modal-wa" target="_blank"
+       class="block text-center py-3 bg-[#25D366] text-white rounded-xl font-black text-xs uppercase">
+       WhatsApp Inquiry
+    </a>
+  </div>
+</div>
 </section>
+
 <footer class="bg-white pt-16 md:pt-20 pb-8 border-t border-slate-100 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 md:px-6">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-12 md:mb-16">
@@ -615,136 +640,162 @@ section h3 {
     </div>
 </footer>
 <script>
-    // 1. GLOBAL VARIABLE FOR TOGGLE
-    let productIsOpen = false;
+/* ===============================
+   1. GLOBAL VARIABLE
+================================ */
+let productIsOpen = false;
 
-    // 2. TOGGLE PRODUCTS FUNCTION (FIXED FOR LAPTOP & MOBILE)
-    function toggleProducts() {
-        const ayurvedic = document.getElementById('ayurvedic-opt');
-        const medicine = document.getElementById('medicine-opt');
+/* ===============================
+   2. TOGGLE PRODUCTS (AYUR / ALLO)
+================================ */
+function toggleProducts() {
+    const ayurvedic = document.getElementById('ayurvedic-opt');
+    const medicine  = document.getElementById('medicine-opt');
 
-        if (!ayurvedic || !medicine) return; // Error handling
+    if (!ayurvedic || !medicine) return;
 
-        const isMobile = window.innerWidth < 1024;
-        const distance = isMobile ? "135px" : "180px";
+    const isMobile = window.innerWidth < 1024;
+    const distance = isMobile ? 135 : 180;
 
-        if (!productIsOpen) {
-            ayurvedic.style.opacity = "1";
-            ayurvedic.style.pointerEvents = "auto";
-            ayurvedic.style.transform = `translateX(-${distance})`;
+    if (!productIsOpen) {
+        ayurvedic.style.opacity = "1";
+        ayurvedic.style.pointerEvents = "auto";
+        ayurvedic.style.transform = `translateX(-${distance}px)`;
 
-            medicine.style.opacity = "1";
-            medicine.style.pointerEvents = "auto";
-            medicine.style.transform = `translateX(${distance})`;
+        medicine.style.opacity = "1";
+        medicine.style.pointerEvents = "auto";
+        medicine.style.transform = `translateX(${distance}px)`;
 
-            productIsOpen = true;
-        } else {
-            ayurvedic.style.opacity = "0";
-            ayurvedic.style.pointerEvents = "none";
-            ayurvedic.style.transform = "translateX(0)";
+        productIsOpen = true;
+    } else {
+        ayurvedic.style.opacity = "0";
+        ayurvedic.style.pointerEvents = "none";
+        ayurvedic.style.transform = "translateX(0)";
 
-            medicine.style.opacity = "0";
-            medicine.style.pointerEvents = "none";
-            medicine.style.transform = "translateX(0)";
+        medicine.style.opacity = "0";
+        medicine.style.pointerEvents = "none";
+        medicine.style.transform = "translateX(0)";
 
-            productIsOpen = false;
+        productIsOpen = false;
+    }
+}
+
+/* ===============================
+   3. PRODUCT FILTER (FIXED)
+================================ */
+function filterProducts(category) {
+    const allItems = document.querySelectorAll('.product-card');
+
+    allItems.forEach(item => {
+        const isAyurveda   = item.classList.contains('ayurveda-item');
+        const isAllopathy  = item.classList.contains('allopathy-item');
+
+        if (category === 'ayurveda') {
+            item.style.display = isAyurveda ? '' : 'none';
         }
+        else if (category === 'allopathy') {
+            item.style.display = isAllopathy ? '' : 'none';
+        }
+        else {
+            item.style.display = '';
+        }
+    });
+
+    const section = document.getElementById('products-section');
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    // 3. NEW: PRODUCT FILTER LOGIC (Added this)
-    function filterProducts(category) {
-        // എല്ലാ പ്രോഡക്റ്റ് കാർഡുകളെയും സെലക്ട് ചെയ്യുന്നു
-        const allItems = document.querySelectorAll('.product-card');
+    productIsOpen = false;
+    toggleProducts(); // auto close menu
+}
 
-        allItems.forEach(item => {
-            if (category === 'ayurveda') {
-                // Ayurveda കാണിക്കുക, Allopathy ഒളിപ്പിക്കുക
-                if (item.classList.contains('ayurveda-item')) {
-                    item.style.display = 'flex';
-                } else {
-                    item.style.display = 'none';
-                }
-            } else if (category === 'allopathy') {
-                // Allopathy കാണിക്കുക, Ayurveda ഒളിപ്പിക്കുക
-                if (item.classList.contains('allopathy-item')) {
-                    item.style.display = 'flex';
-                } else {
-                    item.style.display = 'none';
-                }
-            }
-        });
+/* ===============================
+   4. PRODUCT MODAL
+================================ */
+function openProduct(name, comp, desc) {
+    const modal = document.getElementById('product-modal');
+    if (!modal) return;
 
-        // പ്രോഡക്റ്റ് സെക്ഷനിലേക്ക് സ്മൂത്ത് ആയി സ്ക്രോൾ ചെയ്യാൻ
-        const section = document.getElementById('products-section');
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth' });
-        }
+    document.getElementById('modal-title').innerText = name;
+    document.getElementById('modal-comp').innerText  = comp;
+    document.getElementById('modal-desc').innerText  = desc;
+
+    const msg = encodeURIComponent(
+        `Hi Z Pharmaka, I would like to know more about ${name} (${comp}).`
+    );
+
+    document.getElementById('modal-wa').href =
+        `https://wa.me/919036633621?text=${msg}`;
+
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProduct() {
+    const modal = document.getElementById('product-modal');
+    if (!modal) return;
+
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+/* ===============================
+   5. CONTACT FORM SEND
+================================ */
+function sendTo(platform) {
+    const name  = document.getElementById('c_name').value.trim();
+    const email = document.getElementById('c_email').value.trim();
+    const phoneOnly = document.getElementById('c_phone').value.trim();
+    const code  = document.getElementById('c_code').value;
+    const purpose = document.getElementById('c_purpose').value;
+    const msg   = document.getElementById('c_message').value.trim();
+
+    if (!name || !msg) {
+        alert("Name & Message fill cheyyu");
+        return;
     }
 
-    // 4. PRODUCT MODAL LOGIC
-    function openProduct(name, comp, desc) {
-        document.getElementById('modal-title').innerText = name;
-        document.getElementById('modal-comp').innerText = comp;
-        document.getElementById('modal-desc').innerText = desc;
-
-        const message = encodeURIComponent(`Hi Z Pharmaka, I would like to know more about ${name} (${comp}).`);
-        document.getElementById('modal-wa').href = `https://wa.me/919036633621?text=${message}`;
-
-        const modal = document.getElementById('product-modal');
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
+    if (!/^[0-9]+$/.test(phoneOnly)) {
+        alert("Phone number-ൽ numbers മാത്രം നൽകൂ");
+        return;
     }
 
-    function closeProduct() {
-        const modal = document.getElementById('product-modal');
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
+    if (phoneOnly.length < 7) {
+        alert("Valid phone number നൽകൂ");
+        return;
     }
 
-    // 5. CONTACT FORM & REDIRECT LOGIC
-    function sendTo(platform) {
-        const name = document.getElementById('c_name').value;
-        const email = document.getElementById('c_email').value;
-        const phoneOnly = document.getElementById('c_phone').value;
-        const phone = document.getElementById('c_code').value + phoneOnly;
-        const purpose = document.getElementById('c_purpose').value;
-        const msg = document.getElementById('c_message').value;
+    const phone = code + phoneOnly;
 
-        if (!name || !msg) {
-            alert("Please fill Name and Message");
-            return;
-        }
+    const fullMsg = encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nPurpose: ${purpose}\nMessage: ${msg}`
+    );
 
-        if (!/^\d+$/.test(phoneOnly)) {
-            alert("Phone number-ൽ numbers മാത്രം നൽകൂ");
-            return;
-        }
-
-        if (phoneOnly.length < 7) {
-            alert("Valid phone number നൽകൂ");
-            return;
-        }
-
-        const fullMsg = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nPurpose: ${purpose}\nMessage: ${msg}`);
-
-        if (platform === 'whatsapp') {
-            window.open(`https://wa.me/919036633621?text=${fullMsg}`, '_blank');
-        } else {
-            window.location.href = `mailto:zpharmaka@gmail.com?subject=Inquiry: ${purpose}&body=${fullMsg}`;
-        }
+    if (platform === 'whatsapp') {
+        window.open(`https://wa.me/919036633621?text=${fullMsg}`, '_blank');
+    } else {
+        window.location.href =
+            `mailto:zpharmaka@gmail.com?subject=Inquiry: ${purpose}&body=${fullMsg}`;
     }
+}
 
-    // 6. WINDOW CLICK LOGIC (MODAL CLOSE)
-    window.onclick = function (event) {
-        let modal = document.getElementById('product-modal');
-        if (event.target == modal) {
-            closeProduct();
-        }
-    };
-
-    function setMessage(val) {
-        document.getElementById('c_message').value = val;
+/* ===============================
+   6. MODAL OUTSIDE CLICK CLOSE
+================================ */
+window.addEventListener('click', function (e) {
+    const modal = document.getElementById('product-modal');
+    if (modal && e.target === modal) {
+        closeProduct();
     }
+});
+
+/* ===============================
+   7. QUICK MESSAGE SETTER
+================================ */
+function setMessage(text) {
+    document.getElementById('c_message').value = text;
+}
 </script>
 </body>
 </html>
