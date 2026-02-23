@@ -3,713 +3,779 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Career Drive Edu | Professional Global Consultancy</title>
+    <title>Z Pharmaka Pvt Ltd | Guardian of Health</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
-        .gradient-blue { background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); }
-        .card-hover:hover { transform: translateY(-10px); transition: all 0.3s ease; }
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 120px;
+}
 
-        /* Modal Animation */
-        .animate-slideUp { animation: slideUp 0.4s ease-out; }
-        @keyframes slideUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #f8fafc;
+    overflow-x: hidden;
+}
 
-        /* Hide scrollbar for clean UI */
-        #detailModal > div { max-height: 90vh; overflow-y: auto; }
-        .service-tab.active {
-    background-color: #f97316; /* Orange color */
-    border-color: #f97316;
+/* ================= NAV ================= */
+.glass-nav-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    padding: 10px 16px;
+}
+
+.brand-z {
+    background: linear-gradient(135deg, #059669 0%, #0284c7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+/* ================= MENU ================= */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.menu-pill {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #334155;
+    text-align: center;
+    padding: 6px 2px;
+    border-radius: 10px;
+}
+
+@media (min-width: 768px) {
+    .glass-nav-container {
+        border-radius: 30px;
+        padding: 12px 20px;
+    }
+    .menu-grid {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: 0;
+    }
+    .menu-pill {
+        font-size: 0.9rem;
+        padding: 10px 12px;
+    }
+    .menu-pill:hover {
+        color: #059669;
+    }
+}
+
+/* ================= BUTTON ================= */
+.btn-portfolio {
+    background: linear-gradient(135deg, #059669 0%, #0284c7 100%);
+    color: white !important;
+    border-radius: 12px;
+    padding: 8px 12px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+/* ================= SECTION SPACING FIX ================= */
+section {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/* ❌ removed: section + section padding-top (main error) */
+
+/* ================= ABOUT ================= */
+.about-glass {
+    background: linear-gradient(135deg, #ecfdf5 0%, #eff6ff 100%);
+    border-radius: 35px;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 40px 80px -20px rgba(0,0,0,0.05);
+}
+
+/* ================= PRODUCT ================= */
+.product-card {
+    background: #ffffff;
+    border-radius: 30px;
+    padding: 25px;
+    border: 1px solid #f1f5f9;
+    transition: 0.4s ease;
+}
+
+/* ================= BLUE–GREEN SECTION ================= */
+.catalogue-box {
+    background: linear-gradient(135deg, #0284c7 0%, #059669 100%);
+    border-radius: 35px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ================= FLOAT BUTTON ================= */
+.live-chat-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25D366;
     color: white;
-    box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3);
+    width: 55px;
+    height: 55px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    box-shadow: 0 10px 20px rgba(37,211,102,0.3);
+    text-decoration: none;
 }
 
-.service-card {
-    transition: all 0.3s ease;
+/* ================= MODAL ================= */
+#product-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
 }
 
-.service-card:hover {
-    transform: translateY(-5px);
-    border-color: #f97316;
+/* ================= ANIMATIONS ================= */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
 }
-        .service-btn.active {
-    background: #f97316;
-    border-color: #f97316;
-    color: white;
-    box-shadow: 0 10px 15px rgba(249, 115, 22, 0.3);
+.animate-float {
+    animation: float 4s ease-in-out infinite;
 }
 
-.item-card {
-    transition: all 0.3s ease;
-    border: 1px solid #eee;
+@keyframes textShimmer {
+    to { background-position: 200% center; }
+}
+.animate-text-shimmer {
+    animation: textShimmer 3s linear infinite;
 }
 
-.item-card:hover {
-    transform: translateY(-8px);
-    border-color: #f97316;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+/* ================= GLOBAL FIX ================= */
+* {
+    box-sizing: border-box;
 }
 
-.animate-fadeUp {
-    animation: fadeUp 0.5s ease-out forwards;
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    position: relative;
 }
 
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-        .service-btn.active { background: #f97316; border-color: #f97316; color: white; }
-.animate-fade { animation: fadeIn 0.4s ease-in; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-.course-list-item:hover { background-color: #f8fafc; }
-        .service-btn.active {
-    background: #f97316;
-    border-color: #f97316;
-    color: white;
-    box-shadow: 0 10px 20px rgba(249, 115, 22, 0.4);
+section, header {
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
-.detail-card {
-    transition: all 0.3s ease;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
+/* ================= SECTION HEADING (BLUE–GREEN) ================= */
+section h1,
+section h2,
+section h3 {
+    background: linear-gradient(135deg, #059669 0%, #0284c7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
 }
+</style>
 
-.detail-card:hover {
-    transform: translateY(-5px);
-    border-color: #f97316;
-    background: white;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-}
+</head>
+<body>
 
-.animate-fade {
-    animation: fadeIn 0.4s ease-in forwards;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-    </style>
-<nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center space-x-3">
-            <div class="h-12 w-12 bg-[#f97316] rounded-xl flex items-center justify-center text-white text-2xl font-bold shadow-lg">CD</div>
-            <div>
-                <h1 class="text-xl font-extrabold text-[#1e3a8a] leading-none">CAREER DRIVE</h1>
-                <p class="text-[10px] tracking-[0.2em] font-bold text-orange-500 uppercase">Edu Consultancy</p>
-            </div>
-        </div>
-
-        <div class="hidden lg:flex space-x-8 font-semibold text-[#1e3a8a]">
-            <a href="#home" class="hover:text-orange-500 transition">Home</a>
-            <a href="#about" class="hover:text-orange-500 transition">About</a>
-            <a href="#courses" class="hover:text-orange-500 transition">Services</a> <a href="scholarship.html" class="text-orange-600 font-bold hover:scale-105 transition">Scholarship</a> <a href="#process" class="hover:text-orange-500 transition">Process</a>
-            <a href="#contact" class="hover:text-orange-500 transition">Contact</a>
-        </div>
-
-        <div class="flex items-center space-x-4">
-            <a href="https://wa.me/919495209080" class="hidden sm:flex bg-[#25D366] text-white px-6 py-2.5 rounded-full font-bold items-center shadow-lg hover:scale-105 transition">
-                <i class="fab fa-whatsapp mr-2 text-xl"></i> Chat Now
-            </a>
-            <button id="menu-btn" class="lg:hidden text-[#1e3a8a] focus:outline-none">
-                <i class="fas fa-bars text-2xl" id="menu-icon"></i>
-            </button>
-        </div>
-    </div>
-
-    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-xl animate-fadeIn">
-        <div class="flex flex-col p-6 space-y-4 font-semibold text-[#1e3a8a]">
-            <a href="#home" onclick="toggleMenu()" class="hover:text-orange-500 py-2 border-b border-gray-50">Home</a>
-            <a href="#about" onclick="toggleMenu()" class="hover:text-orange-500 py-2 border-b border-gray-50">About</a>
-            <a href="#courses" onclick="toggleMenu()" class="hover:text-orange-500 py-2 border-b border-gray-50">Services</a>
-            <a href="scholarship.html" class="text-orange-600 py-2 border-b border-gray-50 flex justify-between items-center font-bold">
-                Scholarships <span class="bg-orange-100 text-[10px] px-2 py-1 rounded italic uppercase">New Page</span>
-            </a>
-            <a href="#process" onclick="toggleMenu()" class="hover:text-orange-500 py-2 border-b border-gray-50">Process</a>
-            <a href="#contact" onclick="toggleMenu()" class="hover:text-orange-500 py-2 border-b border-gray-50">Contact</a>
-            <a href="https://wa.me/919495209080" class="bg-[#25D366] text-white px-6 py-3 rounded-xl font-bold flex items-center justify-center shadow-lg shadow-green-200">
-                <i class="fab fa-whatsapp mr-2 text-xl"></i> Chat on WhatsApp
-            </a>
-        </div>
-    </div>
-</nav>
-   <section id="home" class="relative min-h-[90vh] flex items-center bg-[#1e3a8a] text-white overflow-hidden">
-    <div class="absolute inset-0 opacity-10">
-        <img src="https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&q=80&w=1500" class="w-full h-full object-cover" alt="Campus Background">
-    </div>
-
-    <div class="absolute top-20 right-10 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-10 left-10 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl"></div>
-
-    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
-        <div class="animate-fadeInLeft">
-            <div class="inline-flex items-center space-x-2 bg-orange-500/10 border border-orange-500/20 text-orange-400 px-4 py-2 rounded-full mb-6">
-                <span class="relative flex h-3 w-3">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
-                </span>
-                <span class="text-xs font-black tracking-widest uppercase">Direct Admission 2026-27 Open</span>
-            </div>
-
-            <h2 class="text-5xl lg:text-7xl font-extrabold mb-6 leading-[1.1]">
-                Expert Admission <br>
-                <span class="text-orange-500">Guidance</span> for Your <br>
-                Dream Career.
-            </h2>
-
-            <p class="text-lg text-blue-100 mb-8 max-w-lg leading-relaxed border-l-4 border-orange-500 pl-6 italic">
-                "Personalized mentorship from <span class="text-white font-bold">Abdul Azeez Alungal</span> to help you secure seats in top-tier accredited universities across the globe."
-            </p>
-
-            <div class="flex flex-wrap gap-4 mb-10">
-                <a href="#contact" class="bg-orange-500 hover:bg-orange-600 px-8 py-4 rounded-2xl font-black text-lg shadow-xl shadow-orange-500/30 transition-all transform hover:-translate-y-1 flex items-center">
-                    Get Free Counseling <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                </a>
-                <a href="#courses" class="bg-white/10 backdrop-blur-md border border-white/20 px-8 py-4 rounded-2xl font-black text-lg hover:bg-white/20 transition-all">
-                    Explore Streams
-                </a>
-            </div>
-
-            <div class="flex items-center space-x-8 pt-6 border-t border-white/10">
+    <header class="fixed top-4 left-0 right-0 z-50 px-3 md:px-6">
+        <div class="max-w-6xl mx-auto glass-nav-container flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center space-x-3 w-full md:w-auto justify-center md:justify-start">
+                <img src="https://i.postimg.cc/QMB1hSN8/Whats-App-Image-2026-02-05-at-12-46-01-AM.jpg" alt="Logo" class="w-10 h-10 md:w-12 md:h-12 rounded-xl object-cover">
                 <div>
-                    <p class="text-2xl font-bold">7+</p>
-                    <p class="text-[10px] text-blue-300 uppercase tracking-widest font-bold">Partnered Unis</p>
-                </div>
-                <div class="w-px h-8 bg-white/10"></div>
-                <div>
-                    <p class="text-2xl font-bold">100%</p>
-                    <p class="text-[10px] text-blue-300 uppercase tracking-widest font-bold">Admission Support</p>
-                </div>
-                <div class="w-px h-8 bg-white/10"></div>
-                <div>
-                    <p class="text-2xl font-bold">Expert</p>
-                    <p class="text-[10px] text-blue-300 uppercase tracking-widest font-bold">Mentorship</p>
+                    <h1 class="text-2xl md:text-3xl font-extrabold leading-tight">
+                        <span class="brand-z">Z</span> <span class="text-slate-800">Pharmaka</span>
+                    </h1>
+                    <p class="text-[7px] md:text-[10px] font-bold text-gray-400 uppercase tracking-widest">Pvt Ltd | Guardian of Health</p>
                 </div>
             </div>
+
+            <nav class="menu-grid w-full md:w-auto">
+                <a href="#home" class="menu-pill">Home</a>
+                <a href="#about" class="menu-pill">About</a>
+                <a href="#products-section" class="menu-pill">Products</a>
+                <a href="#contact" class="menu-pill">Contact</a>
+                <div class="col-span-4 md:hidden mt-2">
+                    <a href="#catalogue-section" class="btn-portfolio block">Explore Portfolio</a>
+                </div>
+                <div class="hidden md:block">
+                     <a href="#catalogue-section" class="btn-portfolio block ml-4">Explore Portfolio</a>
+                </div>
+            </nav>
         </div>
+    </header>
 
-        <div class="hidden lg:block relative animate-fadeInRight">
-            <div class="bg-gradient-to-tr from-orange-500 to-yellow-400 w-full aspect-square rounded-[60px] rotate-6 absolute -z-10 opacity-20"></div>
+ <section id="home" class="relative min-h-screen flex items-center bg-white pt-40 md:pt-0 overflow-hidden">
+    <div class="absolute top-20 right-0 w-64 h-64 bg-[#0284c705] rounded-full blur-3xl -z-10"></div>
+    <div class="absolute bottom-20 left-0 w-64 h-64 bg-[#05966905] rounded-full blur-3xl -z-10"></div>
 
-            <div class="relative">
-                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800"
-                     class="rounded-[60px] shadow-2xl shadow-black/50 -rotate-3 hover:rotate-0 transition duration-500 object-cover aspect-[4/5]" alt="Students Discussion">
+    <div class="max-w-7xl mx-auto w-full px-6">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
 
-                <div class="absolute -bottom-6 -left-10 bg-white p-6 rounded-[30px] shadow-2xl flex items-center space-x-4 animate-bounce-slow">
-                    <div class="bg-orange-100 w-12 h-12 rounded-2xl flex items-center justify-center">
-                        <i class="fas fa-user-check text-orange-600 text-xl"></i>
-                    </div>
-                    <div>
-                        <p class="text-[#1e3a8a] font-black text-sm leading-none">Expert Support</p>
-                        <p class="text-gray-400 text-[10px] font-bold mt-1">ABDUL AZEEZ ALUNGAL</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-    <div class="container mx-auto px-6 -mt-16 relative z-20">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="bg-white p-6 rounded-2xl shadow-xl text-center border-b-4 border-orange-500">
-                <p class="text-3xl font-extrabold text-[#1e3a8a]">4000+</p>
-                <p class="text-gray-500 text-sm font-semibold uppercase">Students Placed</p>
-            </div>
-            <div class="bg-white p-6 rounded-2xl shadow-xl text-center border-b-4 border-blue-600">
-                <p class="text-3xl font-extrabold text-[#1e3a8a]">20+</p>
-                <p class="text-gray-500 text-sm font-semibold uppercase">Universities</p>
-            </div>
-            <div class="bg-white p-6 rounded-2xl shadow-xl text-center border-b-4 border-orange-500">
-                <p class="text-3xl font-extrabold text-[#1e3a8a]">100%</p>
-                <p class="text-gray-500 text-sm font-semibold uppercase">Admission Help</p>
-            </div>
-            <div class="bg-white p-6 rounded-2xl shadow-xl text-center border-b-4 border-blue-600">
-                <p class="text-3xl font-extrabold text-[#1e3a8a]">Expert</p>
-                <p class="text-gray-500 text-sm font-semibold uppercase">Counseling</p>
-            </div>
-        </div>
-    </div>
-
-    <section id="about" class="py-24">
-        <div class="container mx-auto px-6 flex flex-col lg:flex-row gap-16 items-center">
-            <div class="lg:w-1/2">
-                <img src="https://i.postimg.cc/Bnhz9WpM/Whats-App-Image-2026-02-16-at-11-47-25-AM-(1).jpg" class="rounded-3xl shadow-2xl">
-            </div>
-            <div class="lg:w-1/2">
-                <h3 class="text-orange-500 font-bold uppercase tracking-widest mb-2">Director's Message</h3>
-                <h2 class="text-4xl font-extrabold text-[#1e3a8a] mb-6">Mentorship Under <br>Abdul Azeez Alungal</h2>
-                <p class="text-gray-600 text-lg leading-relaxed mb-6">
-                    With a deep-rooted commitment to student success, our director has spent years building a network that ensures Every student finds the right seat in the right college.
-                </p>
+            <div class="w-full lg:w-1/2 space-y-8 text-center lg:text-left order-1">
                 <div class="space-y-4">
-                    <div class="flex items-start space-x-4">
-                        <div class="bg-orange-100 p-2 rounded-lg"><i class="fas fa-check text-orange-600"></i></div>
-                        <div>
-                            <h4 class="font-bold text-[#1e3a8a]">Transparent Process</h4>
-                            <p class="text-sm text-gray-500">No hidden fees, just direct admission support.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-4">
-                        <div class="bg-blue-100 p-2 rounded-lg"><i class="fas fa-check text-blue-600"></i></div>
-                        <div>
-                            <h4 class="font-bold text-[#1e3a8a]">Post-Admission Support</h4>
-                            <p class="text-sm text-gray-500">We assist you even after you join the college.</p>
-                        </div>
+                    <h2 class="text-5xl md:text-7xl lg:text-8xl font-black leading-tight text-slate-900">
+                        <span class="animate-text-shimmer bg-clip-text text-transparent bg-gradient-to-r from-[#059669] via-[#0284c7] to-[#059669] bg-[length:200%_auto]">
+                            Better Cure
+                        </span><br>
+                        <span class="text-slate-800 tracking-tight">For Better Life.</span>
+                    </h2>
+                    <p class="text-gray-500 text-lg md:text-xl font-medium max-w-md mx-auto lg:mx-0 leading-relaxed">
+                        Bridging Ayurvedic tradition with modern medical precision for a healthier tomorrow.
+                    </p>
+                </div>
+
+                <div class="relative flex items-center justify-between w-full max-w-md mx-auto lg:mx-0 mt-10 px-2">
+
+    <a href="#products-section" class="flex flex-col items-center gap-2 group animate-float" style="animation-delay: 0.2s;">
+        <div class="w-14 h-14 rounded-full bg-white border-2 border-emerald-500 flex items-center justify-center shadow-lg group-hover:bg-emerald-500 group-hover:text-white transition-all duration-500">
+            <span class="text-2xl group-hover:scale-110 transition-transform">🌿</span>
+        </div>
+        <span class="text-[9px] font-black text-emerald-700 uppercase tracking-tighter">Ayurvedic</span>
+    </a>
+
+    <div class="flex flex-col gap-3 z-10">
+        <a href="#products-section" class="px-6 py-3 bg-[#059669] text-white rounded-xl font-black text-[10px] uppercase tracking-widest text-center shadow-lg hover:shadow-emerald-200 transition-all active:scale-95">
+            Our Medicines
+        </a>
+        <a href="#contact" class="px-6 py-3 border-2 border-[#0284c7] text-[#0284c7] rounded-xl font-black text-[10px] uppercase tracking-widest text-center hover:bg-blue-50 transition-all active:scale-95">
+            Contact Us
+        </a>
+    </div>
+
+    <a href="#products-section" class="flex flex-col items-center gap-2 group animate-float" style="animation-delay: 0.5s;">
+        <div class="w-14 h-14 rounded-full bg-white border-2 border-blue-500 flex items-center justify-center shadow-lg group-hover:bg-blue-600 group-hover:text-white transition-all duration-500">
+            <span class="text-2xl group-hover:scale-110 transition-transform">💊</span>
+        </div>
+        <span class="text-[9px] font-black text-blue-700 uppercase tracking-tighter">Medicine</span>
+    </a>
+
+</div>
+                <div class="flex flex-col items-center justify-center mt-12 animate-bounce opacity-50">
+    <span class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-2">Scroll Down</span>
+    <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+    </svg>
+</div>
+
+                <div class="lg:hidden mt-12 flex justify-center">
+                    <div class="relative w-64 h-64">
+                        <img src="https://i.postimg.cc/MHwxL6NL/Whats-App-Image-2026-02-11-at-8-20-37-PM.jpg"
+                             class="relative w-full h-full object-contain animate-float"
+                             alt="Z Pharmaka Logo Mobile">
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-<section id="services" class="py-24 bg-[#1e3a8a] text-white">
-    <div class="container mx-auto px-6 text-center mb-12">
-        <h2 class="text-4xl font-extrabold mb-4">Our Expertise & Services</h2>
-        <p class="text-blue-200">University Selection to Global Placements</p>
-    </div>
+            <div class="hidden lg:w-1/2 lg:flex justify-center lg:justify-end order-2">
+                <div class="relative w-[450px] h-[450px] animate-float">
+                    <img src="https://i.postimg.cc/MHwxL6NL/Whats-App-Image-2026-02-11-at-8-20-37-PM.jpg"
+                         class="w-full h-full object-contain"
+                         alt="Z Pharmaka Logo Desktop">
 
-    <div class="container mx-auto px-6 mb-12">
-        <div class="flex flex-wrap justify-center gap-4">
-            <button onclick="showService('uni', this)" class="service-btn active px-8 py-3 rounded-xl font-bold border border-white/20 transition-all bg-white text-blue-900 shadow-lg">
-                <i class="fas fa-university mr-2"></i> UNIVERSITIES
-            </button>
-            <button onclick="showService('courses', this)" class="service-btn px-8 py-3 rounded-xl font-bold border border-white/20 transition-all">
-                <i class="fas fa-graduation-cap mr-2"></i> ACADEMIC COURSES
-            </button>
-            <button onclick="showService('place', this)" class="service-btn px-8 py-3 rounded-xl font-bold border border-white/20 transition-all">
-                <i class="fas fa-building mr-2"></i> PLACEMENTS
-            </button>
-            <button onclick="showService('support', this)" class="service-btn px-8 py-3 rounded-xl font-bold border border-white/20 transition-all">
-                <i class="fas fa-shield-alt mr-2"></i> ADMISSION SUPPORT
-            </button>
-        </div>
-    </div>
-
-    <div class="container mx-auto px-6">
-        <div id="service-display" class="bg-white rounded-[40px] p-8 md:p-12 text-slate-900 shadow-2xl min-h-[550px]">
+                    <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-3xl shadow-xl border border-slate-50 hidden md:block">
+                        <p class="text-[10px] font-black text-[#059669] uppercase tracking-widest">Quality Assurance</p>
+                        <p class="text-slate-800 font-bold text-sm uppercase"></p>
+                    </div>
+                </div>
             </div>
+
+        </div>
     </div>
 </section>
-    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center space-x-3">
-            <div class="h-12 w-12 bg-[#f97316] rounded-xl flex items-center justify-center text-white text-2xl font-bold shadow-lg">CD</div>
+  <section id="about" class="max-w-7xl mx-auto px-6 py-28 bg-white">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <div class="relative order-2 lg:order-1">
+            <div class="absolute -inset-6 bg-gradient-to-br from-[#05966908] to-[#0284c708] rounded-[50px] blur-3xl"></div>
+
+            <div class="relative bg-white p-3 rounded-[45px] shadow-[0_30px_70px_-20px_rgba(0,0,0,0.1)] border border-slate-100">
+                <div class="rounded-[35px] overflow-hidden aspect-square relative shadow-inner">
+                    <iframe src="https://player.cloudinary.com/embed/?cloud_name=dqdbeuftk&public_id=VID-20260129-WA0158_hsjs3c&autoplay=true&loop=true&muted=true"
+                            class="absolute inset-0 w-full h-full object-cover" style="border: none;" allowfullscreen></iframe>
+                </div>
+
+                <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white px-8 py-4 rounded-2xl shadow-xl border border-slate-50 flex items-center gap-4 whitespace-nowrap">
+                    <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">South India • Middle East</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-12 order-1 lg:order-2">
+            <div class="space-y-6">
+                <h3 class="text-5xl md:text-7xl font-black text-slate-900 leading-[0.95] tracking-tighter">
+                    Established <br> in <span class="animate-text-shimmer bg-clip-text text-transparent bg-gradient-to-r from-[#059669] via-[#0284c7] to-[#059669] bg-[length:200%_auto]">2026.</span>
+                </h3>
+                <p class="text-slate-600 text-lg md:text-xl font-medium leading-relaxed">
+                    <b>Z Pharmaka Pvt Ltd</b> is a pharmaceutical marketing company dedicated to delivering high-quality and reliable healthcare solutions.
+                </p>
+                <p class="text-slate-500 leading-relaxed max-w-xl">
+                    We strive to create a positive impact on the pharmaceutical industry through innovation, ethical practices, and a strong commitment to patient care across our core markets.
+                </p>
+            </div>
+
+            <div class="space-y-10 pt-4">
+                <div class="relative pl-8 border-l-2 border-green-500">
+                    <h4 class="text-xs font-black text-[#059669] uppercase tracking-[0.3em] mb-2">Our Mission</h4>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        To provide safe, effective, and affordable pharmaceutical products while maintaining the highest standards of quality, integrity, and professionalism.
+                    </p>
+                </div>
+
+                <div class="relative pl-8 border-l-2 border-blue-600">
+                    <h4 class="text-xs font-black text-[#0284c7] uppercase tracking-[0.3em] mb-2">Our Vision</h4>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        To become a trusted and leading pharmaceutical company, known for excellence and patient-centric healthcare solutions in international markets.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+      </section>
+<section id="products-section" class="max-w-7xl mx-auto px-4 py-20">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-4">Our Products</h2>
+        <div class="w-20 h-1.5 bg-gradient-to-r from-[#059669] to-[#0284c7] mx-auto rounded-full"></div>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+
+        <div class="product-card group flex flex-col h-full">
+            <div class="relative aspect-square mb-4 bg-slate-50 rounded-2xl overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=500&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="CEFOZ-200">
+                <span class="absolute top-2 left-2 bg-green-500 text-white text-[8px] font-bold px-2 py-1 rounded-md uppercase">Tablet</span>
+            </div>
+            <h4 class="font-extrabold text-sm md:text-base text-slate-800 line-clamp-1 uppercase">CEFOZ-200</h4>
+            <p class="text-slate-500 text-[10px] mb-4 flex-grow">Cefpodoxime Proxetil</p>
+            <button onclick="openProduct('CEFOZ-200', 'Cefpodoxime Proxetil Tablets I.P.', 'Susceptible mild to moderate infections, Bronchitis, Sinusitis, Pharyngitis, Tonsillitis, Pneumonia, UTI, and Gonorrhea.')" class="w-full py-2 bg-slate-900 text-white text-xs font-bold rounded-lg hover:bg-[#059669] transition-colors">View Details</button>
+        </div>
+
+       <div class="product-card group flex flex-col h-full">
+    <div class="relative aspect-square mb-4 bg-slate-50 rounded-2xl overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1626716586544-6c6132bf72e?q=80&w=500&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="ZLACT">
+        <span class="absolute top-2 left-2 bg-blue-500 text-white text-[8px] font-bold px-2 py-1 rounded-md uppercase">Lotion</span>
+    </div>
+    <h4 class="font-extrabold text-sm md:text-base text-slate-800 line-clamp-1 uppercase">ZLACT</h4>
+    <p class="text-slate-500 text-[10px] mb-4 flex-grow">Calamine & Aloe Vera</p>
+    <button onclick="openProduct('ZLACT', 'Calamine 8%, Aloe Vera & Camphor', 'Soothing relief for dry/irritated skin, treatment for itching and minor skin irritations.')" class="w-full py-2 bg-slate-900 text-white text-xs font-bold rounded-lg hover:bg-[#059669] transition-colors">View Details</button>
+</div>
+
+        <div class="product-card group flex flex-col h-full">
+            <div class="relative aspect-square mb-4 bg-slate-50 rounded-2xl overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1550572017-ed200f5e6383?q=80&w=500&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="DORVAZ A">
+                <span class="absolute top-2 left-2 bg-green-500 text-white text-[8px] font-bold px-2 py-1 rounded-md uppercase">Tablet</span>
+            </div>
+            <h4 class="font-extrabold text-sm md:text-base text-slate-800 line-clamp-1 uppercase">DORVAZ A</h4>
+            <p class="text-slate-500 text-[10px] mb-4 flex-grow">Drotaverine & Aceclofenac</p>
+            <button onclick="openProduct('DORVAZ A', 'Drotaverine hydrochloride & Aceclofenac', 'Intestinal Colic, Biliary Colic, Renal Colic, Irritable Bowel Syndrome, and Post-operative pain relief.')" class="w-full py-2 bg-slate-900 text-white text-xs font-bold rounded-lg hover:bg-[#059669] transition-colors">View Details</button>
+        </div>
+
+        <div class="product-card group flex flex-col h-full">
+            <div class="relative aspect-square mb-4 bg-slate-50 rounded-2xl overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?q=80&w=500&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="ZRAB">
+                <span class="absolute top-2 left-2 bg-green-500 text-white text-[8px] font-bold px-2 py-1 rounded-md uppercase">Tablet</span>
+            </div>
+            <h4 class="font-extrabold text-sm md:text-base text-slate-800 line-clamp-1 uppercase">ZRAB</h4>
+            <p class="text-slate-500 text-[10px] mb-4 flex-grow">Rabeprazole Sodium</p>
+            <button onclick="openProduct('ZRAB', 'Rabeprazole Sodium 20 Mg', 'Gastric Ulcer, Peptic Ulcer Disease, erosive ulcerative GERD, and Zollinger-Ellison Syndrome.')" class="w-full py-2 bg-slate-900 text-white text-xs font-bold rounded-lg hover:bg-[#059669] transition-colors">View Details</button>
+        </div>
+
+        <div class="product-card group flex flex-col h-full">
+            <div class="relative aspect-square mb-4 bg-slate-50 rounded-2xl overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?q=80&w=500&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="DUTAZIL">
+                <span class="absolute top-2 left-2 bg-purple-500 text-white text-[8px] font-bold px-2 py-1 rounded-md uppercase">Capsule</span>
+            </div>
+            <h4 class="font-extrabold text-sm md:text-base text-slate-800 line-clamp-1 uppercase">DUTAZIL</h4>
+            <p class="text-slate-500 text-[10px] mb-4 flex-grow">Silodosin + Dutasteride</p>
+            <button onclick="openProduct('DUTAZIL', 'Silodosin 8 mg + Dutasteride 0.5 mg', 'Reduces Prostate Gland Enlargement (BPH), Improves Urine flow in Men, and Acute urinary Retention.')" class="w-full py-2 bg-slate-900 text-white text-xs font-bold rounded-lg hover:bg-[#059669] transition-colors">View Details</button>
+        </div>
+
+        <div class="product-card group flex flex-col h-full">
+            <div class="relative aspect-square mb-4 bg-slate-50 rounded-2xl overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1555633514-abcee6ad93e1?q=80&w=500&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="ENZYMZ">
+                <span class="absolute top-2 left-2 bg-green-500 text-white text-[8px] font-bold px-2 py-1 rounded-md uppercase">Tablet</span>
+            </div>
+            <h4 class="font-extrabold text-sm md:text-base text-slate-800 line-clamp-1 uppercase">ENZYMZ</h4>
+            <p class="text-slate-500 text-[10px] mb-4 flex-grow">Bromelain & Trypsin</p>
+            <button onclick="openProduct('ENZYMZ', 'Bromelain, Rutoside & Trypsin', 'Back Pain, Fibrosis, Cellulitis, Post Surgery healing, and Respiratory Tract Infections.')" class="w-full py-2 bg-slate-900 text-white text-xs font-bold rounded-lg hover:bg-[#059669] transition-colors">View Details</button>
+        </div>
+
+        <div class="product-card group flex flex-col h-full">
+            <div class="relative aspect-square mb-4 bg-slate-50 rounded-2xl overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1471864190281-ad5f9f33d70e?q=80&w=500&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="CILOSTRAZ">
+                <span class="absolute top-2 left-2 bg-green-500 text-white text-[8px] font-bold px-2 py-1 rounded-md uppercase">Tablet</span>
+            </div>
+            <h4 class="font-extrabold text-sm md:text-base text-slate-800 line-clamp-1 uppercase">CILOSTRAZ</h4>
+            <p class="text-slate-500 text-[10px] mb-4 flex-grow">Cilostazol I.P. 100 mg</p>
+            <button onclick="openProduct('CILOSTRAZ', 'Cilostazol I.P. 100 mg tablets', 'Intermittent claudication, PVD, Peripheral arterial disease in diabetics, and Post-angioplasty care.')" class="w-full py-2 bg-slate-900 text-white text-xs font-bold rounded-lg hover:bg-[#059669] transition-colors">View Details</button>
+        </div>
+
+        <div class="product-card group flex flex-col h-full">
+            <div class="relative aspect-square mb-4 bg-slate-50 rounded-2xl overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1559744279-04c3298c764e?q=80&w=500&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="DISOZ">
+                <span class="absolute top-2 left-2 bg-orange-500 text-white text-[8px] font-bold px-2 py-1 rounded-md uppercase">Syrup</span>
+            </div>
+            <h4 class="font-extrabold text-sm md:text-base text-slate-800 line-clamp-1 uppercase">DISOZ</h4>
+            <p class="text-slate-500 text-[10px] mb-4 flex-grow">Systemic Alkaliser</p>
+            <button onclick="openProduct('DISOZ', 'Disodium Hydrogen Citrate 1.53 GM', 'Treating Metabolic Acidosis and kidney stones, neutralizes excess acid in blood and urine.')" class="w-full py-2 bg-slate-900 text-white text-xs font-bold rounded-lg hover:bg-[#059669] transition-colors">View Details</button>
+        </div>
+
+        <div class="product-card group flex flex-col h-full">
+            <div class="relative aspect-square mb-4 bg-slate-50 rounded-2xl overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1628771065518-0d82f1938462?q=80&w=500&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="HEMOZ">
+                <span class="absolute top-2 left-2 bg-green-500 text-white text-[8px] font-bold px-2 py-1 rounded-md uppercase">Tablet</span>
+            </div>
+            <h4 class="font-extrabold text-sm md:text-base text-slate-800 line-clamp-1 uppercase">HEMOZ</h4>
+            <p class="text-slate-500 text-[10px] mb-4 flex-grow">Iron & Folic Acid</p>
+            <button onclick="openProduct('HEMOZ', 'Ferrous Ascorbate, Folic Acid & Zinc', 'Blood loss, Anaemia management, Pregnancy and Lactation, and useful in Menorrhagia.')" class="w-full py-2 bg-slate-900 text-white text-xs font-bold rounded-lg hover:bg-[#059669] transition-colors">View Details</button>
+        </div>
+
+        <div class="product-card group flex flex-col h-full">
+            <div class="relative aspect-square mb-4 bg-slate-50 rounded-2xl overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=500&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="VITOZ">
+                <span class="absolute top-2 left-2 bg-green-500 text-white text-[8px] font-bold px-2 py-1 rounded-md uppercase">Tablet</span>
+            </div>
+            <h4 class="font-extrabold text-sm md:text-base text-slate-800 line-clamp-1 uppercase">VITOZ</h4>
+            <p class="text-slate-500 text-[10px] mb-4 flex-grow">Multivitamin & Mineral</p>
+            <button onclick="openProduct('VITOZ', 'Ginseng, Folic Acid & Multivitamins', 'Adaptogen to fight fatigue, increase stamina, and supports body against stressors.')" class="w-full py-2 bg-slate-900 text-white text-xs font-bold rounded-lg hover:bg-[#059669] transition-colors">View Details</button>
+        </div>
+
+    </div>
+</section>
+
+<div id="product-modal" class="fixed inset-0 z-[10000] hidden bg-black/80 backdrop-blur-md items-center justify-center p-4">
+    <div class="bg-white w-full max-w-lg rounded-[30px] overflow-hidden relative animate-in fade-in zoom-in duration-300">
+        <button onclick="closeProduct()" class="absolute top-4 right-4 w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-xl font-bold z-10">×</button>
+
+        <div class="p-6 md:p-10">
+            <div class="w-24 h-24 bg-slate-50 rounded-2xl mb-6 mx-auto flex items-center justify-center text-4xl shadow-inner">💊</div>
+            <h3 id="modal-title" class="text-2xl md:text-3xl font-black text-slate-900 text-center uppercase tracking-tight"></h3>
+            <p id="modal-comp" class="text-[#059669] text-xs font-bold text-center mt-2 uppercase tracking-widest"></p>
+
+            <div class="mt-8 space-y-4">
+                <h5 class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Indications & Uses</h5>
+                <p id="modal-desc" class="text-slate-600 text-sm md:text-base leading-relaxed"></p>
+            </div>
+
+            <div class="mt-10 flex flex-col gap-3">
+                <a id="modal-wa" href="#" target="_blank" class="w-full py-4 bg-[#25D366] text-white rounded-2xl font-black text-center flex items-center justify-center gap-2 shadow-lg shadow-green-200">
+                    WHATSAPP ENQUIRY
+                </a>
+                <button onclick="closeProduct()" class="w-full py-4 text-slate-400 font-bold text-xs uppercase tracking-widest">Close Details</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+   <section id="catalogue-section" class="max-w-7xl mx-auto px-6 py-20 bg-white rounded-[40px] mt-10 border border-slate-50">
+    <div class="mb-12 border-b border-slate-100 pb-6">
+        <h3 class="text-3xl font-black text-slate-900 tracking-tight">Corporate Portfolio Details</h3>
+        <p class="text-slate-500 text-sm mt-2 font-medium">Core business operations and quality standards of Z Pharmaka Pvt Ltd.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-10">
+
+        <div class="space-y-4">
+            <div class="text-[#059669] text-2xl font-bold">01. Market Reach</div>
+            <h4 class="font-black text-slate-800 uppercase tracking-tighter">Strategic Regions</h4>
+            <ul class="text-slate-600 text-sm space-y-3 leading-relaxed">
+                <li class="flex gap-2"><b>•</b> <span><b>South India:</b> Extensive distribution network across Kerala, Tamil Nadu, and Karnataka.</span></li>
+                <li class="flex gap-2"><b>•</b> <span><b>Middle East:</b> Exporting and marketing high-quality pharmaceutical solutions to UAE and GCC markets.</span></li>
+            </ul>
+        </div>
+
+        <div class="space-y-4">
+            <div class="text-[#0284c7] text-2xl font-bold">02. Quality Control</div>
+            <h4 class="font-black text-slate-800 uppercase tracking-tighter">Manufacturing Excellence</h4>
+            <ul class="text-slate-600 text-sm space-y-3 leading-relaxed">
+                <li class="flex gap-2"><b>•</b> <span><b>WHO-GMP Standards:</b> All products are sourced from manufacturing units with world-class certifications.</span></li>
+                <li class="flex gap-2"><b>•</b> <span><b>Precision:</b> Strict adherence to clinical research data for therapeutic efficacy.</span></li>
+            </ul>
+        </div>
+
+        <div class="space-y-4">
+            <div class="text-slate-400 text-2xl font-bold">03. Services</div>
+            <h4 class="font-black text-slate-800 uppercase tracking-tighter">Growth & Support</h4>
+            <ul class="text-slate-600 text-sm space-y-3 leading-relaxed">
+                <li class="flex gap-2"><b>•</b> <span><b>Distributorship:</b> Providing profitable opportunities for stockists and retail partners.</span></li>
+                <li class="flex gap-2"><b>•</b> <span><b>24/7 Support:</b> Dedicated team for medical information and order management.</span></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="mt-16 p-8 bg-slate-50 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6">
+        <p class="text-slate-700 font-bold">Interested in our portfolio? Let's discuss business opportunities.</p>
+        <a href="#contact" class="px-10 py-4 bg-[#059669] text-white rounded-xl font-black text-[10px] uppercase tracking-widest shadow-lg shadow-green-100">Contact Business Team</a>
+    </div>
+</section>
+<section id="contact" class="max-w-7xl mx-auto px-4 md:px-6 py-16 bg-white rounded-[50px] my-10 border border-slate-100 shadow-sm overflow-hidden">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+
+        <div class="space-y-8">
             <div>
-                <h1 class="text-xl font-extrabold text-[#1e3a8a] leading-none">CAREER DRIVE</h1>
-                <p class="text-[10px] tracking-[0.2em] font-bold text-orange-500 uppercase">Edu Consultancy</p>
+                <span class="text-[10px] font-black text-[#059669] uppercase tracking-[0.4em] mb-4 block">Z Pharmaka Global</span>
+                <h3 class="text-5xl md:text-7xl font-black text-slate-900 leading-[0.9] tracking-tighter">Ready to <br><span class="brand-z">Connect?</span></h3>
+                <p class="mt-6 text-slate-500 text-lg font-medium leading-relaxed max-w-sm">
+                    Bridging Ayurvedic tradition with modern precision. Reach out via WhatsApp or Email.
+                </p>
             </div>
-        </div>
 
-        <div class="hidden lg:flex space-x-8 font-semibold text-[#1e3a8a]">
-            <a href="index.html#home" class="hover:text-orange-500 transition">Home</a>
-            <a href="index.html#about" class="hover:text-orange-500 transition">About</a>
-            <a href="index.html#courses" class="hover:text-orange-500 transition">Services</a> <a href="scholarship.html" class="text-orange-600 font-bold border-b-2 border-orange-200">Scholarships</a> <a href="index.html#contact" class="hover:text-orange-500 transition">Contact</a>
-        </div>
-
-        <div class="flex items-center space-x-4">
-            <a href="https://wa.me/919495209080" class="hidden sm:flex bg-[#25D366] text-white px-6 py-2.5 rounded-full font-bold items-center shadow-lg hover:scale-105 transition">
-                <i class="fab fa-whatsapp mr-2 text-xl"></i> Chat Now
-            </a>
-            <button id="menu-btn" onclick="toggleMenu()" class="lg:hidden text-[#1e3a8a] focus:outline-none">
-                <i class="fas fa-bars text-2xl" id="menu-icon"></i>
-            </button>
-        </div>
-    </div>
-
-    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-xl">
-        <div class="flex flex-col p-6 space-y-4 font-semibold text-[#1e3a8a]">
-            <a href="index.html#home" onclick="toggleMenu()" class="hover:text-orange-500 py-2 border-b border-gray-50">Home</a>
-            <a href="index.html#about" onclick="toggleMenu()" class="hover:text-orange-500 py-2 border-b border-gray-50">About</a>
-            <a href="index.html#courses" onclick="toggleMenu()" class="hover:text-orange-500 py-2 border-b border-gray-50">Services</a>
-            <a href="scholarship.html" class="text-orange-600 py-2 border-b border-gray-50 font-bold flex justify-between items-center">
-                Scholarships <span class="bg-orange-100 text-[10px] px-2 py-1 rounded">GO TO PAGE</span>
-            </a>
-            <a href="index.html#contact" onclick="toggleMenu()" class="hover:text-orange-500 py-2">Contact</a>
-        </div>
-    </div>
-</nav>
-    <section id="process" class="py-24">
-        <div class="container mx-auto px-6 text-center mb-16">
-            <h2 class="text-4xl font-extrabold text-[#1e3a8a] mb-4">How We Help You</h2>
-            <div class="w-24 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-        </div>
-        <div class="container mx-auto px-6 grid md:grid-cols-4 gap-8">
-            <div class="text-center group">
-                <div class="w-16 h-16 bg-white shadow-xl rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-500 group-hover:text-white transition duration-300 text-[#1e3a8a] font-bold text-xl">1</div>
-                <h4 class="font-bold mb-2">Registration</h4>
-                <p class="text-sm text-gray-500">Contact us with your preferred courses.</p>
-            </div>
-            <div class="text-center group">
-                <div class="w-16 h-16 bg-white shadow-xl rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-500 group-hover:text-white transition duration-300 text-[#1e3a8a] font-bold text-xl">2</div>
-                <h4 class="font-bold mb-2">Counseling</h4>
-                <p class="text-sm text-gray-500">One-on-one session with expert counselors.</p>
-            </div>
-            <div class="text-center group">
-                <div class="w-16 h-16 bg-white shadow-xl rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-500 group-hover:text-white transition duration-300 text-[#1e3a8a] font-bold text-xl">3</div>
-                <h4 class="font-bold mb-2">Selection</h4>
-                <p class="text-sm text-gray-500">Shortlisting best colleges & universities.</p>
-            </div>
-            <div class="text-center group">
-                <div class="w-16 h-16 bg-white shadow-xl rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-500 group-hover:text-white transition duration-300 text-[#1e3a8a] font-bold text-xl">4</div>
-                <h4 class="font-bold mb-2">Admission</h4>
-                <p class="text-sm text-gray-500">Completion of documentation and entry.</p>
-            </div>
-        </div>
-    </section>
-
-   <section id="contact" class="py-24 bg-slate-100">
-    <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-12">
-        <div class="bg-white p-10 rounded-[40px] shadow-2xl animate-fadeIn">
-            <h2 class="text-3xl font-extrabold text-[#1e3a8a] mb-8 text-center lg:text-left">Inquiry Form</h2>
-            <form id="whatsappForm" class="space-y-6">
-                <div class="grid md:grid-cols-2 gap-6">
+            <div class="grid gap-4">
+                <div class="flex items-center gap-5 p-6 bg-slate-50 rounded-[30px] border border-transparent hover:border-green-200 transition-all">
+                    <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm text-xl">📞</div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-2">Your Name</label>
-                        <input type="text" id="userName" required placeholder="John Doe" class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-orange-500 outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-2">Phone Number</label>
-                        <input type="tel" id="userPhone" required placeholder="+91 0000 000 000" class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-orange-500 outline-none">
+                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Phone / WhatsApp</p>
+                        <p class="font-bold text-slate-800 text-lg">+91 90366 33621</p>
                     </div>
                 </div>
-                <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-2">Select Course</label>
-                    <select id="userCourse" class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-orange-500 outline-none">
-                        <option value="Not Specified">-- Select a Course --</option>
-                        <option value="MBBS / Medical">MBBS / Medical</option>
-                        <option value="Engineering (B.Tech)">Engineering (B.Tech)</option>
-                        <option value="Management (BBA/MBA)">Management (BBA/MBA)</option>
-                        <option value="BA / MA Degree">BA / MA Degree</option>
-                        <option value="BCA / MCA / Tech">BCA / MCA / Tech</option>
+                <div class="flex items-center gap-5 p-6 bg-slate-50 rounded-[30px] border border-transparent hover:border-blue-200 transition-all">
+                    <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm text-xl">📧</div>
+                    <div>
+                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Email Support</p>
+                       <p class="font-bold text-slate-800 text-lg">info@zpharmaka.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white p-6 md:p-10 rounded-[45px] shadow-2xl shadow-blue-100/30 border border-slate-50">
+            <form id="contactForm" class="space-y-5">
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-black text-slate-400 uppercase ml-3">Full Name</label>
+                        <input type="text" id="c_name" placeholder="Your Name" class="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 ring-blue-400 border-none font-bold text-slate-700">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-black text-slate-400 uppercase ml-3">Email</label>
+                        <input type="email" id="c_email" placeholder="email@gmail.com" class="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 ring-blue-400 border-none font-bold text-slate-700">
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-[10px] font-black text-slate-400 uppercase ml-3">Phone Number</label>
+                    <div class="flex gap-2">
+                        <select id="c_code" class="bg-slate-50 px-3 rounded-2xl outline-none focus:ring-2 ring-green-400 border-none font-bold text-xs w-28">
+                            <option value="+91">🇮🇳 +91</option>
+                            <option value="+971">🇦🇪 +971</option>
+                            <option value="+966">🇸🇦 +966</option>
+                            <option value="+965">🇰🇼 +965</option>
+                            <option value="+974">🇶🇦 +974</option>
+                        </select>
+                        <input type="tel" id="c_phone" placeholder="9876543210" class="flex-1 p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 ring-green-400 border-none font-bold text-slate-700">
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-[10px] font-black text-slate-400 uppercase ml-3">Select Purpose</label>
+                    <select id="c_purpose" class="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 ring-blue-400 border-none font-bold text-slate-700 appearance-none">
+                        <option value="Distributorship">Distributorship Inquiry</option>
+                        <option value="Medical">Medical / Product Support</option>
+                        <option value="Export">International Export</option>
+                        <option value="Feedback">Customer Feedback</option>
                     </select>
                 </div>
-                <button type="button" onclick="sendToWhatsApp()" class="w-full bg-[#1e3a8a] hover:bg-orange-600 text-white font-bold py-5 rounded-2xl transition-all shadow-xl shadow-blue-900/20 transform hover:-translate-y-1">
-                    <i class="fab fa-whatsapp mr-2"></i> Send Application Details
-                </button>
+
+                <div class="space-y-2">
+                    <label class="text-[10px] font-black text-slate-400 uppercase ml-3">Quick Messages (Click to select)</label>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" onclick="setMessage('I am interested in taking Z Pharmaka distributorship.')" class="px-4 py-2 bg-green-50 text-[10px] font-bold text-[#059669] rounded-full hover:bg-[#059669] hover:text-white transition-all">Distributorship?</button>
+                        <button type="button" onclick="setMessage('Can I get more details about your pharmaceutical products?')" class="px-4 py-2 bg-blue-50 text-[10px] font-bold text-[#0284c7] rounded-full hover:bg-[#0284c7] hover:text-white transition-all">Product Details</button>
+                        <button type="button" onclick="setMessage('I would like to know about export opportunities to GCC.')" class="px-4 py-2 bg-slate-50 text-[10px] font-bold text-slate-500 rounded-full hover:bg-slate-200 transition-all">Export GCC</button>
+                    </div>
+                    <textarea id="c_message" rows="3" placeholder="Or type your message here..." class="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 ring-green-400 border-none font-bold text-slate-700 mt-2"></textarea>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 pt-4">
+                    <button type="button" onclick="sendTo('whatsapp')" class="w-full py-5 bg-[#25D366] text-white rounded-2xl font-black uppercase tracking-widest text-[10px] hover:shadow-lg transition-all">WhatsApp</button>
+                    <button type="button" onclick="sendTo('email')" class="w-full py-5 bg-gradient-to-r from-[#059669] to-[#0284c7] text-white rounded-2xl font-black uppercase tracking-widest text-[10px] hover:shadow-lg transition-all">Send Email</button>
+                </div>
             </form>
         </div>
-
-        <div class="flex flex-col justify-center">
-            <h2 class="text-4xl font-extrabold text-[#1e3a8a] mb-6">Visit Our Office</h2>
-            <div class="space-y-6 mb-8">
-                <div class="flex items-start space-x-6">
-                    <div class="bg-orange-500 text-white w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
-                        <i class="fas fa-map-marked-alt"></i>
-                    </div>
-                    <div>
-                        <p class="font-bold text-[#1e3a8a]">Headquarters</p>
-                        <p class="text-gray-600">Pazheri Building, Near Prashanti Ayurveda,<br>Chungam, Kondotty, Malappuram - 673638</p>
-                    </div>
-                </div>
-                <div class="flex items-start space-x-6">
-                    <div class="bg-[#1e3a8a] text-white w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <div>
-                        <p class="font-bold text-[#1e3a8a]">Call Support</p>
-                        <p class="text-gray-600 font-bold mt-1">
-                            <a href="tel:+919495209080" class="hover:text-orange-500">9495 209 080</a><br>
-                            <a href="tel:+917591952244" class="hover:text-orange-500">7591 952 244</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div onclick="openGoogleMap()" class="cursor-pointer rounded-3xl overflow-hidden shadow-lg h-64 bg-slate-200 border-4 border-white group relative">
-                <iframe
-                    class="w-full h-full grayscale-[50%] group-hover:grayscale-0 transition duration-500"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3914.000000000000!2d75.9556!3d11.1333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDA4JzAwLjAiTiA3NcKwNTcnMjAuMiJF!5e0!3m2!1sen!2sin!4v1708240000000"
-                    style="border:0; pointer-events: none;"
-                    allowfullscreen=""
-                    loading="lazy">
-                </iframe>
-                <div class="absolute inset-0 bg-[#1e3a8a]/10 group-hover:bg-transparent transition duration-500"></div>
-                <div class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md p-3 rounded-2xl flex justify-between items-center shadow-lg">
-                    <div>
-                        <p class="text-[10px] font-black text-blue-900 uppercase tracking-widest">Office Location</p>
-                        <p class="text-xs text-gray-600">Kondotty Chungam, Malappuram</p>
-                    </div>
-                    <i class="fas fa-external-link-alt text-blue-600"></i>
-                </div>
-            </div>
-        </div>
     </div>
-       </section>
-<footer class="bg-[#0f172a] text-gray-400 py-16">
-    <div class="container mx-auto px-6 grid md:grid-cols-4 gap-12 border-b border-white/5 pb-12">
-        <div class="col-span-1 md:col-span-2">
-            <div class="flex items-center space-x-3 mb-6">
-                <div class="h-12 w-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-orange-500/20">CD</div>
-                <h1 class="text-2xl font-bold text-white tracking-tight">Career Drive <span class="text-orange-500 italic">Edu</span></h1>
+</section>
+<footer class="bg-white pt-16 md:pt-20 pb-8 border-t border-slate-100 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-12 md:mb-16">
+
+            <div class="space-y-6">
+                <div class="flex items-center gap-3">
+                    <img src="https://i.postimg.cc/QMB1hSN8/Whats-App-Image-2026-02-05-at-12-46-01-AM.jpg" alt="Logo" class="w-10 h-10 md:w-12 md:h-12 rounded-2xl object-cover shadow-sm">
+                    <div>
+                        <h4 class="text-xl font-black text-slate-900 leading-none tracking-tighter">
+                            <span class="brand-z">Z</span> Pharmaka
+                        </h4>
+                        <p class="text-[8px] font-bold text-[#059669] uppercase tracking-widest mt-1.5">Guardian of Health</p>
+                    </div>
+                </div>
+                <p class="text-slate-500 text-xs leading-relaxed font-medium max-w-[240px]">
+                    Bridging Ayurvedic tradition with modern medical precision for a healthier tomorrow.
+                </p>
             </div>
-            <p class="max-w-md leading-relaxed text-slate-400">
-                Dedicated to providing high-quality educational consulting and admission support for students aiming for excellence. We bridge the gap between your dreams and top-tier universities.
-            </p>
-            <div class="flex space-x-4 mt-6">
-                <a href="https://instagram.com/yourprofile" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-gradient-to-tr from-yellow-500 via-red-500 to-purple-500 hover:text-white transition-all duration-300"><i class="fab fa-instagram"></i></a>
-                <a href="https://facebook.com/yourpage" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-300"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://wa.me/919495209080" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-green-500 hover:text-white transition-all duration-300"><i class="fab fa-whatsapp"></i></a>
+
+            <div>
+                <h5 class="text-slate-900 font-black uppercase text-[10px] tracking-[0.3em] mb-6 border-l-2 border-[#059669] pl-3">Navigation</h5>
+                <ul class="space-y-3 text-[11px] font-bold text-slate-500">
+                    <li><a href="#home" class="hover:text-[#059669] transition-all duration-300 uppercase">Home</a></li>
+                    <li><a href="#about" class="hover:text-[#059669] transition-all duration-300 uppercase">About Us</a></li>
+                    <li><a href="#products-section" class="hover:text-[#059669] transition-all duration-300 uppercase">Products</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="text-slate-900 font-black uppercase text-[10px] tracking-[0.3em] mb-6 border-l-2 border-[#0284c7] pl-3">Contact</h5>
+                <ul class="space-y-4 text-[11px] font-bold text-slate-600">
+                    <li class="flex items-center gap-3">
+                        <span class="text-[#059669] bg-green-50 w-6 h-6 flex items-center justify-center rounded-md">📞</span>
+                        +91 90366 33621
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="text-[#0284c7] bg-blue-50 w-6 h-6 flex items-center justify-center rounded-md">📧</span>
+                        info@zpharmaka.com
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="text-slate-900 font-black uppercase text-[10px] tracking-[0.3em] mb-6">Global Markets</h5>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1.5 bg-green-50 text-[#059669] text-[9px] font-bold rounded-xl border border-green-100 uppercase tracking-tighter">South India</span>
+                    <span class="px-3 py-1.5 bg-blue-50 text-[#0284c7] text-[9px] font-bold rounded-xl border border-blue-100 uppercase tracking-tighter">Middle East</span>
+                </div>
             </div>
         </div>
 
-        <div>
-            <h4 class="text-white font-bold mb-6 uppercase text-xs tracking-[0.2em]">Navigation</h4>
-            <ul class="space-y-4 text-sm">
-                <li><a href="#about" class="hover:text-orange-500 transition-colors flex items-center group"><i class="fas fa-chevron-right text-[10px] mr-2 text-orange-500/50 group-hover:translate-x-1 transition-transform"></i> About Us</a></li>
-                <li><a href="#services" class="hover:text-orange-500 transition-colors flex items-center group"><i class="fas fa-chevron-right text-[10px] mr-2 text-orange-500/50 group-hover:translate-x-1 transition-transform"></i> Our Services</a></li>
-                <li><a href="#contact" class="hover:text-orange-500 transition-colors flex items-center group"><i class="fas fa-chevron-right text-[10px] mr-2 text-orange-500/50 group-hover:translate-x-1 transition-transform"></i> Contact Support</a></li>
-            </ul>
-        </div>
+        <div class="pt-8 border-t border-slate-50 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="order-2 md:order-1 text-center md:text-left">
+                <p class="text-[9px] font-black uppercase tracking-[0.3em] text-slate-300">
+                    &copy; 2026 Z Pharmaka Pvt Ltd. All Rights Reserved.
+                </p>
+            </div>
 
-        <div>
-            <h4 class="text-white font-bold mb-6 uppercase text-xs tracking-[0.2em]">Legal</h4>
-            <ul class="space-y-4 text-sm">
-                <li><a href="#" class="hover:text-orange-500 transition-colors flex items-center"><i class="fas fa-shield-alt text-[10px] mr-2 text-orange-500/50"></i> Privacy Policy</a></li>
-                <li><a href="#" class="hover:text-orange-500 transition-colors flex items-center"><i class="fas fa-file-contract text-[10px] mr-2 text-orange-500/50"></i> Terms of Service</a></li>
-            </ul>
+            <div class="order-1 md:order-2 flex flex-col items-center md:items-end gap-3">
+                <div class="flex items-center gap-3">
+                    <a href="#" class="w-9 h-9 bg-slate-50 rounded-xl flex items-center justify-center text-[10px] font-black text-slate-400 hover:bg-[#059669] hover:text-white transition-all shadow-sm">IG</a>
+                    <a href="#" class="w-9 h-9 bg-slate-50 rounded-xl flex items-center justify-center text-[10px] font-black text-slate-400 hover:bg-[#0284c7] hover:text-white transition-all shadow-sm">IN</a>
+                </div>
+                <div class="flex items-center gap-2 group cursor-pointer opacity-70 hover:opacity-100 transition-all">
+                    <span class="text-[8px] font-bold text-slate-300 uppercase tracking-tighter">Designed by</span>
+                    <span class="text-[10px] font-black text-slate-500 tracking-tighter">VOIZON <span class="text-[#0284c7]">DIGITAL</span></span>
+                    <div class="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-[#059669] to-[#0284c7]"></div>
+                </div>
+            </div>
         </div>
-    </div>
-
-    <div class="container mx-auto px-6 mt-10 flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs tracking-wide">
-        <p>&copy; 2026 <span class="text-white font-bold">Career Drive Edu</span> Consultancy Services. All Rights Reserved.</p>
-        <p class="mt-4 md:mt-0 text-slate-500 uppercase tracking-widest flex items-center">
-            Designed for Excellence <i class="fas fa-heart ml-2 text-red-500/50"></i>
-        </p>
     </div>
 </footer>
+<script>
+    // 3. Product Modal Logic
+    function openProduct(name, comp, desc) {
+        document.getElementById('modal-title').innerText = name;
+        document.getElementById('modal-comp').innerText = comp;
+        document.getElementById('modal-desc').innerText = desc;
 
- <script>
-    // 1. DATA STRUCTURE
-    const finalData = {
-        uni: {
-            title: "Partnered Universities",
-            desc: "We provide direct admission to 7+ top-tier accredited institutions.",
-            items: [
-                { name: "Yenepoya University", sub: "Mangalore", info: "NAAC A+ Accredited" },
-                { name: "Jain University", sub: "Bangalore", info: "UGC Category 1" },
-                { name: "Manipal Academy", sub: "Manipal", info: "Institution of Eminence" },
-                { name: "Amrita Vishwa Vidyapeetham", sub: "Coimbatore", info: "A++ Grade University" },
-                { name: "Bharathiar University", sub: "Coimbatore", info: "State Govt University" },
-                { name: "Hindustan Institute", sub: "Chennai", info: "Top Engineering Hub" },
-                { name: "Sathyabama Institute", sub: "Chennai", info: "Excellent Placement Record" }
-            ]
-        },
-        courses: {
-            title: "Available Academic Streams",
-            desc: "Select a category to see the full list of courses available for admission.",
-            isCategory: true,
-            items: [
-                { id: "ba", name: "BA Courses", icon: "fa-book" },
-                { id: "ma", name: "MA Courses", icon: "fa-user-graduate" },
-                { id: "eng", name: "Engineering (B.Tech)", icon: "fa-cog" },
-                { id: "tech", name: "BCA / MCA / IT", icon: "fa-laptop-code" },
-                { id: "mgmt", name: "MBA / BBA", icon: "fa-briefcase" }
-            ]
-        },
-        place: {
-            title: "Placement Excellence",
-            desc: "Our students are successfully placed in world-leading corporate giants.",
-            isPlacement: true,
-            items: [
-                { company: "TCS / Infosys", student: "Arjun Das", role: "Software Engineer", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400", details: "Placed with top package." },
-                { company: "Apollo Hospitals", student: "Meera Nair", role: "Medical Admin", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400", details: "Joined Healthcare Management." },
-                { company: "Wipro Technologies", student: "Kevin Paul", role: "Business Analyst", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400", details: "Secured role in 2024 drive." }
-            ]
-        },
-        support: {
-            title: "Admission Guidance & Support",
-            desc: "Expert support throughout your academic journey.",
-            items: [
-                { name: "Expert Counseling", info: "Right course & university selection." },
-                { name: "Online Admission Support", info: "End-to-end application processing." },
-                { name: "Documentation Aid", info: "Full verification & paper work help." },
-                { name: "Scholarship Guidance", info: "Financial aid & merit support." },
-                { name: "Educational Loan Aid", info: "Bank documentation assistance." },
-                { name: "Post Admission Support", info: "Continuous guidance until course completion." }
-            ]
+        const message = encodeURIComponent(
+            `Hi Z Pharmaka, I would like to know more about ${name} (${comp}).`
+        );
+        document.getElementById('modal-wa').href =
+            `https://wa.me/919036633621?text=${message}`;
+
+        const modal = document.getElementById('product-modal');
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeProduct() {
+        const modal = document.getElementById('product-modal');
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // 4. Close modal if clicking outside
+    window.onclick = function (event) {
+        let modal = document.getElementById('product-modal');
+        if (event.target == modal) {
+            closeProduct();
         }
     };
 
-    const subCourses = {
-        ba: [
-            { name: "BA English", elig: "12th Pass", dur: "3 Years", desc: "Focus on World Literature & Communication." },
-            { name: "BA Sociology", elig: "12th Pass", dur: "3 Years", desc: "Study of society & social behavior." },
-            { name: "BA History", elig: "12th Pass", dur: "3 Years", desc: "Indian & Global History analysis." },
-            { name: "BA Psychology", elig: "12th Pass", dur: "3 Years", desc: "Understanding human mind & behavior." },
-            { name: "BA Economics", elig: "12th Pass", dur: "3 Years", desc: "Principles of economy & finance." }
-        ],
-        ma: [
-            { name: "MA English", elig: "Degree", dur: "2 Years", desc: "Advanced Literary Criticism." },
-            { name: "MA Sociology", elig: "Degree", dur: "2 Years", desc: "Advanced Social Research." },
-            { name: "MA Psychology", elig: "Degree", dur: "2 Years", desc: "Specialization in Clinical Psychology." }
-        ],
-        eng: [
-            { name: "B.Tech CSE", elig: "12th (PCM)", dur: "4 Years", desc: "AI, ML, & Software Development." },
-            { name: "B.Tech Cyber Security", elig: "12th (PCM)", dur: "4 Years", desc: "Digital Security & Ethical Hacking." },
-            { name: "B.Tech Civil", elig: "12th (PCM)", dur: "4 Years", desc: "Infrastructure & Structural Planning." },
-            { name: "B.Tech Robotics", elig: "12th (PCM)", dur: "4 Years", desc: "Automation & Future Robotics." }
-        ],
-        tech: [
-            { name: "BCA", elig: "12th Pass", dur: "3 Years", desc: "Application & Software Development." },
-            { name: "B.Sc IT", elig: "12th Pass", dur: "3 Years", desc: "Information Technology systems." },
-            { name: "MCA", elig: "Degree (Maths)", dur: "2 Years", desc: "Post Graduation in Computing." }
-        ],
-        mgmt: [
-            { name: "MBA Finance", elig: "Degree", dur: "2 Years", desc: "Banking & Financial Management." },
-            { name: "MBA HR", elig: "Degree", dur: "2 Years", desc: "Human Resource & Recruitment." },
-            { name: "BBA Logistics", elig: "12th Pass", dur: "3 Years", desc: "Supply Chain & Operations." }
-        ]
-    };
-
-    // 2. MAIN SERVICES RENDER
-    function showService(key, btn) {
-        const data = finalData[key];
-        const display = document.getElementById('service-display');
-        if (!display) return;
-
-        // Button UI highlight fix
-        document.querySelectorAll('.service-btn').forEach(b => {
-            b.classList.remove('bg-white', 'text-blue-900', 'shadow-lg');
-            b.classList.add('border-white/20');
-        });
-
-        const targetBtn = btn || document.querySelector(`button[onclick*="'${key}'"]`);
-        if (targetBtn) {
-            targetBtn.classList.add('bg-white', 'text-blue-900', 'shadow-lg');
-            targetBtn.classList.remove('border-white/20');
-        }
-
-        let html = `<div class="animate-fadeIn">
-                        <h3 class="text-3xl font-black text-blue-900 mb-2">${data.title}</h3>
-                        <div class="w-16 h-1 bg-orange-500 mb-6"></div>
-                        <p class="text-gray-500 mb-10 max-w-2xl">${data.desc}</p>
-                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">`;
-
-        data.items.forEach(item => {
-            if (data.isCategory) {
-                html += `<div onclick="showSubList('${item.id}')" class="p-8 bg-blue-50 rounded-[24px] cursor-pointer hover:bg-blue-100 transition border-b-4 border-transparent hover:border-blue-600 group">
-                            <i class="fas ${item.icon} text-4xl text-blue-600 mb-4 group-hover:scale-110 transition"></i>
-                            <h4 class="font-bold text-xl text-blue-900">${item.name}</h4>
-                            <p class="text-xs text-blue-400 mt-2 font-black uppercase tracking-widest italic">View all courses →</p>
-                        </div>`;
-            } else if (data.isPlacement) {
-                html += `<div class="bg-white border border-slate-100 rounded-[24px] overflow-hidden shadow-sm group hover:shadow-xl transition">
-                            <div class="h-40 overflow-hidden"><img src="${item.img}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"></div>
-                            <div class="p-5">
-                                <span class="text-[10px] font-black text-orange-600 uppercase tracking-tighter">${item.company}</span>
-                                <h4 class="font-bold text-blue-900 text-lg">${item.student}</h4>
-                                <p class="text-xs text-gray-400 italic font-bold">"${item.role}"</p>
-                            </div>
-                        </div>`;
-            } else {
-                html += `<div class="p-6 bg-slate-50 rounded-[24px] border border-slate-100 hover:border-orange-200 transition">
-                            <h4 class="text-lg font-bold text-blue-900">${item.name}</h4>
-                            <p class="text-orange-600 text-[10px] font-black uppercase mt-1 tracking-widest">${item.sub || item.info}</p>
-                        </div>`;
-            }
-        });
-        display.innerHTML = html + `</div></div>`;
+    // Quick message select function
+    function setMessage(val) {
+        document.getElementById('c_message').value = val;
     }
 
-    // 3. SUB-COURSE LIST RENDER
-    function showSubList(id) {
-        const list = subCourses[id] || [];
-        const display = document.getElementById('service-display');
+    // Direct Redirect Function (with proper phone validation)
+    function sendTo(platform) {
+        const name = document.getElementById('c_name').value;
+        const email = document.getElementById('c_email').value;
+        const phoneOnly = document.getElementById('c_phone').value;
+        const phone =
+            document.getElementById('c_code').value + phoneOnly;
+        const purpose = document.getElementById('c_purpose').value;
+        const msg = document.getElementById('c_message').value;
 
-        let html = `<div class="animate-fadeIn">
-                    <button onclick="showService('courses')" class="mb-6 text-blue-600 font-bold hover:translate-x-[-5px] transition flex items-center">
-                        <i class="fas fa-arrow-left mr-2"></i> BACK TO CATEGORIES
-                    </button>
-                    <div class="grid md:grid-cols-2 gap-8">`;
-
-        list.forEach(c => {
-            html += `<div class="p-8 bg-white border-2 border-slate-50 rounded-[32px] shadow-sm hover:shadow-lg transition">
-                        <h4 class="text-2xl font-black text-blue-900 mb-2">${c.name}</h4>
-                        <p class="text-sm text-gray-500 mb-6">${c.desc}</p>
-                        <div class="flex flex-wrap gap-3 mb-8">
-                            <span class="bg-blue-50 text-blue-700 px-4 py-1 rounded-full text-[10px] font-black">ELIGIBILITY: ${c.elig}</span>
-                            <span class="bg-orange-50 text-orange-700 px-4 py-1 rounded-full text-[10px] font-black">${c.dur}</span>
-                        </div>
-                        <button onclick="contactWA('${c.name}')" class="w-full bg-[#25D366] text-white py-4 rounded-2xl font-black hover:bg-green-600 shadow-lg transition transform hover:-translate-y-1">
-                           <i class="fab fa-whatsapp mr-2"></i> VIEW FULL DETAILS & APPLY
-                        </button>
-                    </div>`;
-        });
-        display.innerHTML = html + `</div></div>`;
-    }
-
-    // 4. WHATSAPP ACTION (Common)
-    function contactWA(course) {
-        const message = encodeURIComponent(`Hi, I am looking for admission details for ${course}. Please provide the eligibility and fee structure.`);
-        window.open(`https://wa.me/919495209080?text=${message}`, '_blank');
-    }
-
-    // 5. CONTACT FORM ACTION
-    function sendToWhatsApp() {
-        const name = document.getElementById('userName').value;
-        const phone = document.getElementById('userPhone').value;
-        const course = document.getElementById('userCourse').value;
-
-        if (name.trim() === "" || phone.trim() === "") {
-            alert("Please enter your name and phone number.");
+        // Basic required check
+        if (!name || !msg) {
+            alert("Please fill Name and Message");
             return;
         }
 
-        const message = encodeURIComponent(
-            `*NEW ADMISSION INQUIRY*\n` +
-            `--------------------------\n` +
-            `*Name:* ${name}\n` +
-            `*Phone:* ${phone}\n` +
-            `*Course:* ${course}\n\n` +
-            `Hi, I am interested in admission details. Please contact me.`
+        // ✅ Numbers-only phone check (NEW – main fix)
+        if (!/^\d+$/.test(phoneOnly)) {
+            alert("Phone number-ൽ numbers മാത്രം നൽകൂ");
+            return;
+        }
+
+        // ✅ Phone length check
+        if (phoneOnly.length < 7) {
+            alert("Valid phone number നൽകൂ");
+            return;
+        }
+
+        // ✅ Email check (only for email button)
+        if (platform === 'email' && !email) {
+            alert("Email enter ചെയ്യൂ");
+            return;
+        }
+
+        const fullMsg = encodeURIComponent(
+            `Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Purpose: ${purpose}
+Message: ${msg}`
         );
 
-        window.open(`https://wa.me/919495209080?text=${message}`, '_blank');
+        if (platform === 'whatsapp') {
+            window.open(
+                `https://wa.me/919036633621?text=${fullMsg}`,
+                '_blank'
+            );
+        } else {
+            window.location.href =
+                `mailto:zpharmaka@gmail.com?subject=Inquiry: ${purpose}&body=${fullMsg}`;
+        }
     }
-
-    // 6. GOOGLE MAP ACTION
-    function openGoogleMap() {
-        // Pazheri Building, Kondotty Chungam exact location
-        const mapURL = "https://www.google.com/maps/search/Pazheri+Building+Kondotty+Chungam";
-        window.open(mapURL, '_blank');
-    }
-
-    // INITIAL LOAD
-    window.onload = () => {
-        showService('uni');
-    };
-     // Mobile Menu Toggle Function
-const menuBtn = document.getElementById('menu-btn');
-const mobileMenu = document.getElementById('mobile-menu');
-const menuIcon = document.getElementById('menu-icon');
-
-function toggleMenu() {
-    mobileMenu.classList.toggle('hidden');
-    // Change icon from bars to X when open
-    if (mobileMenu.classList.contains('hidden')) {
-        menuIcon.classList.remove('fa-times');
-        menuIcon.classList.add('fa-bars');
-    } else {
-        menuIcon.classList.remove('fa-bars');
-        menuIcon.classList.add('fa-times');
-    }
-}
-
-menuBtn.addEventListener('click', toggleMenu);
-     function toggleMenu() {
-    const menu = document.getElementById('mobile-menu');
-    const icon = document.getElementById('menu-icon');
-    menu.classList.toggle('hidden');
-    if(menu.classList.contains('hidden')) {
-        icon.classList.replace('fa-times', 'fa-bars');
-    } else {
-        icon.classList.replace('fa-bars', 'fa-times');
-    }
-}
-
 </script>
 
 </body>
