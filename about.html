@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - My Daily Info World</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="text-xl font-bold tracking-tight text-slate-900">
+                My Daily Info <span class="text-emerald-600">World</span>
+            </a>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
+                <a href="index.html" class="hover:text-emerald-600 transition">Home</a>
+                <a href="about.html" class="text-emerald-600 font-semibold">About</a>
+                <a href="index.html" class="hover:text-emerald-600 transition">Blog</a>
+                <a href="contact.html" class="hover:text-emerald-600 transition">Contact</a>
+            </nav>
+            <button class="bg-slate-900 text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-slate-800 transition shadow-sm">
+                Subscribe
+            </button>
+        </div>
+    </header>
+
+    <!-- Main About Section -->
+    <main class="max-w-7xl mx-auto px-6 py-16 md:py-24">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+
+            <!-- Left Side: Premium Photo Frame & Welcome Message -->
+            <div class="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-emerald-600 to-blue-600 rounded-[32px] transform rotate-3 scale-105 opacity-10 group-hover:rotate-1 transition-transform duration-500"></div>
+                    <div class="relative overflow-hidden rounded-[32px] shadow-xl border border-slate-200/60 aspect-[4/5] bg-slate-200">
+                        <!-- നിങ്ങളുടെ ഫോട്ടോ വരുമ്പോൾ താഴെയുള്ള src-ൽ 'your-photo.jpg' എന്ന് മാറ്റി കൊടുത്താൽ മതി -->
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="About Profile" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- NEW ADDITION: Welcome Note Under Photo -->
+                <div class="p-6 bg-emerald-50/60 border border-emerald-100 rounded-2xl text-center">
+                    <h3 class="font-bold text-slate-900 text-lg">Hey, I'm Nadeem Ahmed</h3>
+                    <p class="text-sm text-slate-600 mt-1">Founder & Chief Editor of My Daily Info World</p>
+                </div>
+            </div>
+
+            <!-- Right Side: Content Details -->
+            <div class="lg:col-span-7 space-y-8">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-full">Who We Are</span>
+                    <h1 class="text-3xl md:text-5xl font-extrabold text-slate-950 tracking-tight leading-tight mt-4">Welcome to My Daily Info World</h1>
+                </div>
+
+                <p class="text-lg text-slate-600 leading-relaxed">
+                    We are dedicated to bringing you the most authentic, well-researched, and simplified content across two core pillars: <strong>Health & Fitness</strong> and <strong>Global Insights</strong>. Our mission is to keep you healthy, active, and thoroughly informed every single day.
+                </p>
+
+                <p class="text-slate-600 leading-relaxed">
+                    Based out of the vibrant tech hub of Bengaluru, we build international-standard resources to help our global community live a more balanced, high-performance lifestyle.
+                </p>
+
+                <!-- NEW ADDITION: Vision & Mission Blocks -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+                    <div class="p-6 bg-white border border-slate-200/80 rounded-2xl shadow-sm space-y-2">
+                        <div class="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center font-bold">🎯</div>
+                        <h4 class="font-bold text-slate-900">Our Vision</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">To become a trusted global destination for crystal-clear, factual knowledge that enhances daily lifestyle standards.</p>
+                    </div>
+                    <div class="p-6 bg-white border border-slate-200/80 rounded-2xl shadow-sm space-y-2">
+                        <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center font-bold">🚀</div>
+                        <h4 class="font-bold text-slate-900">Our Mission</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">To break down heavy health guidelines and digital information into engaging, practical, and highly readable daily updates.</p>
+                    </div>
+                </div>
+
+                <!-- Quick Info Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="p-5 bg-white border border-slate-200/80 rounded-2xl shadow-sm">
+                        <span class="text-xs font-semibold text-slate-400 uppercase block mb-1">Email Us</span>
+                        <a href="mailto:nadeemahmedh1@gmail.com" class="text-sm font-bold text-slate-900 hover:text-emerald-600 transition break-all">nadeemahmedh1@gmail.com</a>
+                    </div>
+                    <div class="p-5 bg-white border border-slate-200/80 rounded-2xl shadow-sm">
+                        <span class="text-xs font-semibold text-slate-400 uppercase block mb-1">Call Support</span>
+                        <a href="tel:9741489787" class="text-sm font-bold text-slate-900 hover:text-emerald-600 transition">9741489787</a>
+                    </div>
+                </div>
+
+                <!-- Social Connect Links -->
+                <div>
+                    <span class="text-xs font-bold text-slate-400 uppercase block mb-3">Connect With Us</span>
+                    <div class="flex flex-wrap gap-3">
+                        <a href="#" class="bg-white border border-slate-200 text-slate-700 hover:border-emerald-600 hover:text-emerald-600 text-xs font-semibold px-4 py-2.5 rounded-xl transition shadow-sm">Instagram</a>
+                        <a href="#" class="bg-white border border-slate-200 text-slate-700 hover:border-emerald-600 hover:text-emerald-600 text-xs font-semibold px-4 py-2.5 rounded-xl transition shadow-sm">YouTube</a>
+                        <a href="#" class="bg-white border border-slate-200 text-slate-700 hover:border-emerald-600 hover:text-emerald-600 text-xs font-semibold px-4 py-2.5 rounded-xl transition shadow-sm">Twitter (X)</a>
+                        <a href="#" class="bg-white border border-slate-200 text-slate-700 hover:border-emerald-600 hover:text-emerald-600 text-xs font-semibold px-4 py-2.5 rounded-xl transition shadow-sm">Facebook</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-6 text-center space-y-4">
+            <p class="text-sm">&copy; 2026 My Daily Info World. All rights reserved.</p>
+            <div class="flex justify-center space-x-6 text-xs font-medium">
+                <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition">Terms & Conditions</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
